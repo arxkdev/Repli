@@ -23,38 +23,12 @@ local NewClassConnected = Signal.new();
 local ClassesConnected = {};
 local ClassConnectRemote = script.Parent._RepliConnect;
 ClassConnectRemote.OnClientEvent:Connect(function(classConnectedTo, initialValue)
-    -- Check if the class we are connecting to is the class we want
-    -- if (classConnectedTo ~= class) then
-    --     return;
-    -- end;
-
+    -- Update classes connected to and fire the signal with the initial value
     ClassesConnected[classConnectedTo] = initialValue;
     NewClassConnected:Fire(classConnectedTo, initialValue);
-
-    -- This is fired from the server when the server has allowed us to connect to the class
-    -- self._remoteEvent = self._R:FindFirstChild("RepliEvent_" .. classConnectedTo);
-    -- self._value = initialValue;
-    -- self._isReady = true;
-
-    -- -- Fire the initial value
-    -- self._changedSignal:Fire(initialValue);
-    
-    -- -- Once we are connected, we can start listening for changes
-    -- self:onReady():andThen(function()
-    --     self._changedSignal:Fire(self._value);
-
-    --     -- Listen for further changes
-    --     self._furtherChanges = self._remoteEvent.OnClientEvent:Connect(function(value)
-    --         if (value == self._value) then
-    --             return;
-    --         end;
-
-    --         self._value = value;
-    --         self._changedSignal:Fire(value);
-    --     end);
-    -- end);
 end);
 
+-- Wait for a class to be connected to
 function WaitForClass(class)
     return Promise.new(function(resolve, reject)
         if (ClassesConnected[class]) then
@@ -76,7 +50,6 @@ end
 
 function RepliClient.fromClass(class)
     local self = setmetatable({}, RepliClient);
-    self._remoteEvent = nil;
     self._isReady = false;
     self._changedSignal = Signal.new();
     self._value = nil;
