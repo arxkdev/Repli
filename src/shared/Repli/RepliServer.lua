@@ -17,6 +17,7 @@ local Signal = require(script.Parent.Signal);
 ]=]
 --[=[
     @class RepliServer
+    @server
 ]=]
 local RepliServer = {}
 RepliServer.__index = RepliServer

@@ -17,6 +17,7 @@ local Signal = require(script.Parent.Signal);
 ]=]
 --[=[
     @class RepliClient
+    @client
 ]=]
 local RepliClient = {};
 RepliClient.__index = RepliClient;
