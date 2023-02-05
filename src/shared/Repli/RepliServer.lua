@@ -15,6 +15,8 @@ local Signal = require(script.Parent.Signal);
 local RepliServer = {}
 RepliServer.__index = RepliServer
 
+local insert = table.insert;
+
 -- Example
 --[[
 local Repli = require(ReplicatedStorage.Repli)
@@ -36,6 +38,17 @@ print(Value:getValue()) -- Will print the value of the server (every client will
 print(Value:getValueForClient(player)) -- Will print the value of the client
 
 ]]
+
+-- Helper Functions
+local function filter(t, predicate)
+    local new = {};
+    for _, v in t do
+        if (predicate(v)) then
+            insert(new, v);
+        end;
+    end;
+    return new;
+end;
 
 -- Contains all the remotes
 local _R = Instance.new("Folder")
@@ -121,7 +134,7 @@ end
     @param value any
 ]=]
 function RepliServer:setValueForList(clients, value)
-    for _, client in pairs(clients) do
+    for _, client in clients do
         self.remoteEvent:FireClient(client, value);
     end;
 end
@@ -169,7 +182,7 @@ end
     @param clients table
 ]=]
 function RepliServer:clearValueForList(clients)
-    for _, client in pairs(clients) do
+    for _, client in clients do
         self:clearValueForClient(client);
     end;
 end
