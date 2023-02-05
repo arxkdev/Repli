@@ -10,6 +10,12 @@ local Signal = require(script.Parent.Signal);
     The value of the created class
 ]=]
 --[=[
+    @within RepliServer
+    @prop remoteEvent any
+
+    The remote event for the created value/class.
+]=]
+--[=[
     @class RepliServer
 ]=]
 local RepliServer = {}
@@ -74,7 +80,9 @@ classConnect.Parent = script.Parent;
 ]=]
 function RepliServer.createValue(className, value)
     local self = setmetatable({}, RepliServer);
+    -- Value globally
     self.value = value;
+    -- Value for specific clients
     self.clientValues = {};
     self.className = className;
     self.playerRemoving = nil;

@@ -14,7 +14,7 @@ local function subscribedFunctionTestPlayerdData(value)
     print("Client subscribed to TestPlayerData: ", value);
 
     print("Player gems:", value.Gems);
-    -- ScreenGui.TextLabel.Text = value;
+    ScreenGui.TextLabel.Text = "Gems: " .. value.Gems;
 end
 TestPlayerData:subscribe(subscribedFunctionTestPlayerdData);
 
