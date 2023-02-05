@@ -5,12 +5,14 @@ local Signal = require(script.Parent.Signal);
 
 --[=[
     @within RepliServer
+    @readonly
     @prop value any
 
     The value of the created class
 ]=]
 --[=[
     @within RepliServer
+    @readonly
     @prop remoteEvent any
 
     The remote event for the created value/class.
@@ -45,17 +47,6 @@ print(Value:getValue()) -- Will print the value of the server (every client will
 print(Value:getValueForClient(player)) -- Will print the value of the client
 
 ]]
-
--- Helper Functions
-local function filter(t, predicate)
-    local new = {};
-    for _, v in t do
-        if (predicate(v)) then
-            insert(new, v);
-        end;
-    end;
-    return new;
-end;
 
 -- Contains all the remotes
 local _R = Instance.new("Folder")
@@ -148,6 +139,24 @@ function RepliServer:setValueForList(clients, value)
     end;
 end
 
+-- Set a value for a filter of clients with a predicate
+--[=[
+    Sets the value for a filter of clients
+
+    @param predicate function
+    @param value any
+]=]
+function RepliServer:setValueForFilter(predicate, value)
+    for client, _ in self._clientValues do
+        if (predicate(client)) then
+            self:setValueForClient(client, value);
+        end;
+    end;
+end
+-- value:setValueForFilter(function(client)
+--     return (client.Name == "Player1");
+-- end, 10);
+
 -- Get value for all clients
 --[=[
     Gets the value for all clients
@@ -203,6 +212,20 @@ end
 function RepliServer:clearValue()
     table.clear(self._clientValues);
     self.remoteEvent:FireAllClients(self._value);
+end
+
+-- Clear value for a filter of clients with a predicate
+--[=[
+    Clears the value for a filter of clients
+
+    @param predicate function
+]=]
+function RepliServer:clearValueForFilter(predicate)
+    for client, _ in self._clientValues do
+        if (predicate(client)) then
+            self:clearValueForClient(client);
+        end;
+    end;
 end
 
 -- Adding a client to the class

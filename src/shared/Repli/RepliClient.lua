@@ -5,6 +5,7 @@ local Signal = require(script.Parent.Signal);
 -- Client side of the replication system
 --[=[
     @within RepliClient
+    @readonly
     @prop isReady boolean
 
     Whether or not the client is ready to receive data
