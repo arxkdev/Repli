@@ -10,6 +10,12 @@ local Signal = require(script.Parent.Signal);
     Whether or not the client is ready to receive data
 ]=]
 --[=[
+    @within RepliClient
+    @prop value any
+
+    The current value of the class
+]=]
+--[=[
     @class RepliClient
 ]=]
 local RepliClient = {};
