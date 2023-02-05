@@ -4,6 +4,25 @@ gitRepoUrl = "https://github.com/Kumarion/Repli" # From Git
 gitSourceBranch = "main"
 changelog = true
 
+[home]
+enabled = true
+includeReadme = false # Optional
+
+[[home.features]]
+title = "Simple"
+description = "Repli is a simple, easy to use, and lightweight replication library for Roblox."
+image = "https://www.freeiconspng.com/thumbs/easy-icon/easy-icon-13.png"
+
+[[home.features]]
+title = "Quick"
+description = "Repli is a quick and easy way to replicate data between the client and server."
+image = "https://www.freeiconspng.com/thumbs/easy-icon/easy-icon-13.png"
+
+[[home.features]]
+title = "Lightweight"
+description = "Repli is a lightweight library that doesn't take up much space."
+image = "https://www.freeiconspng.com/thumbs/easy-icon/easy-icon-13.png"
+
 [[classOrder]]
 section = "Repli"
 classes = ["RepliClient", "RepliServer"]
@@ -21,7 +40,7 @@ organizationName = "Kumarion"
 projectName = "Repli"
 url = "https://kumarion.github.io"
 baseUrl = "/Repli/"
-tagline = "Your project's tagline"
+tagline = "Simple. Quick. Lightweight replication library for Roblox."
 
 [footer]
 style = "dark"
