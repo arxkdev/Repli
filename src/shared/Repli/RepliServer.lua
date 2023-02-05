@@ -82,11 +82,11 @@ classConnect.Parent = script.Parent;
 function RepliServer.createValue(className, value)
     local self = setmetatable({}, RepliServer);
     -- Value globally
-    self.value = value;
+    self._value = value;
     -- Value for specific clients
-    self.clientValues = {};
-    self.className = className;
-    self.playerRemoving = nil;
+    self._clientValues = {};
+    self._className = className;
+    self._playerRemoving = nil;
     self._R = _R;
 
     -- Create a remote event for the clients to send data to the server
@@ -94,9 +94,9 @@ function RepliServer.createValue(className, value)
     remoteEvent.Name = "RepliEvent_" .. className;
     remoteEvent.Parent = self._R;
 
-    self.remoteEvent = remoteEvent;
+    self._remoteEvent = remoteEvent;
 
-    self.playerRemoving = Players.PlayerRemoving:Connect(function(player)
+    self._playerRemoving = Players.PlayerRemoving:Connect(function(player)
         self:removeClient(player);
     end);
 
@@ -119,8 +119,8 @@ end
     @param value any
 ]=]
 function RepliServer:setValue(value)
-    self.value = value;
-    self.remoteEvent:FireAllClients(value);
+    self._value = value;
+    self._remoteEvent:FireAllClients(value);
 end
 
 -- Set value for a specific client
@@ -131,8 +131,8 @@ end
     @param value any
 ]=]
 function RepliServer:setValueForClient(client, value)
-    self.clientValues[client] = value;
-    self.remoteEvent:FireClient(client, value);
+    self._clientValues[client] = value;
+    self._remoteEvent:FireClient(client, value);
 end
 
 -- Set value for a list of clients
@@ -144,7 +144,7 @@ end
 ]=]
 function RepliServer:setValueForList(clients, value)
     for _, client in clients do
-        self.remoteEvent:FireClient(client, value);
+        self._remoteEvent:FireClient(client, value);
     end;
 end
 
@@ -155,7 +155,7 @@ end
     @return any
 ]=]
 function RepliServer:getValue()
-    return self.value;
+    return self._value;
 end
 
 -- Get value for a specific client
@@ -166,7 +166,7 @@ end
     @return any
 ]=]
 function RepliServer:getValueForClient(client)
-    return self.clientValues[client];
+    return self._clientValues[client];
 end
 
 -- Clear a value for a specific client
@@ -176,12 +176,12 @@ end
     @param client Player
 ]=]
 function RepliServer:clearValueForClient(client)
-    if (not self.clientValues[client]) then
+    if (not self._clientValues[client]) then
         return
     end;
 
-    self.clientValues[client] = nil;
-    self.remoteEvent:FireClient(client, self.value);
+    self._clientValues[client] = nil;
+    self._remoteEvent:FireClient(client, self.value);
 end
 
 -- Clear a value for a list of clients
@@ -201,8 +201,8 @@ end
     Clears the value for all clients
 ]=]
 function RepliServer:clearValue()
-    table.clear(self.clientValues);
-    self.remoteEvent:FireAllClients(self.value);
+    table.clear(self._clientValues);
+    self.remoteEvent:FireAllClients(self._value);
 end
 
 -- Adding a client to the class
@@ -212,10 +212,10 @@ end
     @param client Player
 ]=]
 function RepliServer:addClient(client)
-    self.clientValues[client] = self.value;
+    self._clientValues[client] = self._value;
 
     -- Tell the client they are connected to the class
-    classConnect:FireClient(client, self.className, self.value);
+    classConnect:FireClient(client, self._className, self._value);
 end
 
 -- Removing a client from the class
@@ -225,8 +225,8 @@ end
     @param client Player
 ]=]
 function RepliServer:removeClient(client)
-    if (self.clientValues[client]) then
-        self.clientValues[client] = nil;
+    if (self._clientValues[client]) then
+        self._clientValues[client] = nil;
     end;
 end
 
@@ -235,9 +235,9 @@ end
     Destroys the class
 ]=]
 function RepliServer:destroy()
-    table.clear(self.clientValues);
-    self.remoteEvent:Destroy();
-    self.playerRemoving:Disconnect();
+    table.clear(self._clientValues);
+    self._remoteEvent:Destroy();
+    self._playerRemoving:Disconnect();
 end
 
 return table.freeze(RepliServer);

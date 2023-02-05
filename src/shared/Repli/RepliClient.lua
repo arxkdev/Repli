@@ -156,12 +156,12 @@ end
     Returns the current value
 
     :::caution
-    This will return nil if the client is not ready
+    This will return nil if the client is not ready. Consider using ``onReady`` if you want to wait for the value to be ready.
     :::
 
     @return any
 ]=]
-function RepliClient:get()
+function RepliClient:getValue()
     return self._value;
 end
 
