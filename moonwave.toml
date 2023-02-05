@@ -3,7 +3,14 @@ gitRepoUrl = "https://github.com/kumarion/repli" # From Git
 
 gitSourceBranch = "master"
 changelog = true
-classOrder = []
+
+[[classOrder]]
+section = "Repli"
+classes = ["RepliClient", "RepliServer"]
+
+[[classOrder]]
+section = "Util"
+classes = ["Promise", "Signal", "Error"]
 
 [docusaurus]
 onBrokenLinks = "throw"
