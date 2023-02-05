@@ -6,8 +6,8 @@ local Repli = require(Common:WaitForChild("Repli"));
 local PlayerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui");
 local ScreenGui = PlayerGui:WaitForChild("ScreenGui");
 
-local TestPlayerData = Repli.fromClass("TestPlayerData");
-local Test2 = Repli.fromClass("Test2");
+local TestPlayerData = Repli.fromValue("TestPlayerData");
+local Test2 = Repli.fromValue("Test2");
 
 -- Subscribe to it and print the value, and also update the text label
 local function subscribedFunctionTestPlayerdData(value)

@@ -15,7 +15,7 @@ ReplicatedStorage.RemoteEvent.OnServerEvent:Connect(function(player)
     local new = (TestPlayerData:getValueForClient(player));
     new.Gems = new.Gems + 1;
 
-    print(`Gems value for {player.Name} is {new}`);
+    -- print(`Gems value for {player.Name} is {new}`);
     TestPlayerData:setValueForClient(player, new);
 end)
 

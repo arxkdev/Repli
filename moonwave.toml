@@ -1,0 +1,21 @@
+title = "Repli"  # From Git
+gitRepoUrl = "https://github.com/kumarion/repli" # From Git
+
+gitSourceBranch = "master"
+changelog = true
+classOrder = []
+
+[docusaurus]
+onBrokenLinks = "throw"
+onBrokenMarkdownLinks = "warn"
+
+# From git:
+organizationName = "Kumarion"
+projectName = "Repli"
+url = "https://kumarion.github.io"
+baseUrl = "/repli/"
+tagline = "Your project's tagline"
+
+[footer]
+style = "dark"
+copyright = "Copyright © 2023 Kumarion. Built with Moonwave and Docusaurus"

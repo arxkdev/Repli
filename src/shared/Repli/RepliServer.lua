@@ -3,6 +3,15 @@ local Players = game:GetService("Players");
 local Promise = require(script.Parent.Promise);
 local Signal = require(script.Parent.Signal);
 
+--[=[
+    @within RepliServer
+    @prop value any
+
+    The value of the created class
+]=]
+--[=[
+    @class RepliServer
+]=]
 local RepliServer = {}
 RepliServer.__index = RepliServer
 
@@ -43,6 +52,13 @@ local classConnect = Instance.new("RemoteEvent");
 classConnect.Name = "_RepliConnect";
 classConnect.Parent = script.Parent;
 
+--[=[
+    Creates a new value that can be replicated to the clients
+
+    @param className string
+    @param value any
+    @return RepliServer
+]=]
 function RepliServer.createValue(className, value)
     local self = setmetatable({}, RepliServer);
     self.value = value;
@@ -72,13 +88,24 @@ function RepliServer.createValue(className, value)
 end
 
 -- Adding a client to the class
+--[=[
+    Adds a client to the class
+
+    @param client Player
+]=]
 function RepliServer:addClient(client)
     self.clients[client] = self.value;
 
     -- Tell the client they are connected to the class
     classConnect:FireClient(client, self.className, self.value);
 end
+
 -- Removing a client from the class
+--[=[
+    Removes a client from the class
+
+    @param client Player
+]=]
 function RepliServer:removeClient(client)
     if (self.clients[client]) then
         self.clients[client] = nil;
@@ -86,6 +113,11 @@ function RepliServer:removeClient(client)
 end
 
 -- Set value for all clients
+--[=[
+    Sets the value for all clients
+
+    @param value any
+]=]
 function RepliServer:setValue(value)
     self.value = value;
 
@@ -94,6 +126,12 @@ function RepliServer:setValue(value)
 end
 
 -- Set value for a specific client
+--[=[
+    Sets the value for a specific client
+
+    @param client Player
+    @param value any
+]=]
 function RepliServer:setValueForClient(client, value)
     self.clients[client] = value;
 
@@ -102,11 +140,22 @@ function RepliServer:setValueForClient(client, value)
 end
 
 -- Get value for all clients
+--[=[
+    Gets the value for all clients
+
+    @return any
+]=]
 function RepliServer:getValue()
     return self.value;
 end
 
 -- Get value for a specific client
+--[=[
+    Gets the value for a specific client
+
+    @param client Player
+    @return any
+]=]
 function RepliServer:getValueForClient(client)
     return self.clients[client];
 end

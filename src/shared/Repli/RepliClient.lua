@@ -3,6 +3,15 @@ local Promise = require(script.Parent.Promise);
 local Signal = require(script.Parent.Signal);
 
 -- Client side of the replication system
+--[=[
+    @within RepliClient
+    @prop isReady boolean
+
+    Whether or not the client is ready to receive data
+]=]
+--[=[
+    @class RepliClient
+]=]
 local RepliClient = {};
 RepliClient.__index = RepliClient;
 
@@ -48,7 +57,13 @@ function WaitForClass(class)
     end);
 end
 
-function RepliClient.fromClass(class)
+-- Create a new RepliClient
+--[=[
+    Retrieves a new value (class) from the server and returns a RepliClient
+    @param class string
+    @return RepliClient
+]=]
+function RepliClient.fromValue(class)
     local self = setmetatable({}, RepliClient);
     self._isReady = false;
     self._changedSignal = Signal.new();
@@ -84,11 +99,19 @@ function RepliClient.fromClass(class)
 end
 
 -- Check if this client class is ready
+--[=[
+    Returns true if the client is ready to receive data
+    @return boolean
+]=]
 function RepliClient:isReady()
     return self._isReady;
 end
 
 -- Wait for the remote to be ready and fire the initial value
+--[=[
+    Returns a promise that resolves when the client is ready
+    @return Promise<any>
+]=]
 function RepliClient:onReady()
     if (self._isReady) then
         Promise.resolve(self._value);
@@ -106,6 +129,11 @@ end
 
 -- Subscribe to changes
 -- Does initial value and any further changes
+--[=[
+    Subscribes to changes
+    @param callback function
+    @return RBXScriptConnection
+]=]
 function RepliClient:subscribe(callback)
     task.defer(function()
         if (self._isReady) then
@@ -117,6 +145,15 @@ function RepliClient:subscribe(callback)
 end
 
 -- Get the current value
+--[=[
+    Returns the current value
+
+    :::caution
+    This will return nil if the client is not ready
+    :::
+
+    @return any
+]=]
 function RepliClient:get()
     return self._value;
 end
