@@ -1,6 +1,9 @@
 -- Server side of the replication system
 local Players = game:GetService("Players");
 
+-- Dependencies
+local Signal = require(script.Parent.Signal);
+
 --[=[
     @within RepliServer
     @readonly
@@ -72,6 +75,8 @@ function RepliServer.createValue(className, value)
     self._value = value;
     -- Value for specific clients
     self._clientValues = {};
+    -- Signal for when the global value changes
+    self._valueChanged = Signal.new();
     self._className = className;
     self._playerRemoving = nil;
     self._R = _R;
@@ -99,6 +104,16 @@ function RepliServer.createValue(className, value)
     return self;
 end
 
+-- Gets the changed signal for the global value
+--[=[
+    Gets the changed signal for the global value
+
+    @return Signal
+]=]
+function RepliServer:subscribe(callback)
+    self._valueChanged:Connect(callback);
+end
+
 -- Set value for all clients
 --[=[
     Sets the value for all clients
@@ -108,6 +123,7 @@ end
 function RepliServer:setValue(value)
     self._value = value;
     self._remoteEvent:FireAllClients(value);
+    self._valueChanged:Fire(self._value);
 end
 
 -- Set value for a specific client
@@ -131,7 +147,7 @@ end
 ]=]
 function RepliServer:setValueForList(clients, value)
     for _, client in clients do
-        self._remoteEvent:FireClient(client, value);
+        self:setValueForClient(client, value);
     end;
 end
 
@@ -303,6 +319,7 @@ function RepliServer:destroy()
     table.clear(self._clientValues);
     self._remoteEvent:Destroy();
     self._playerRemoving:Disconnect();
+    self._valueChanged:Destroy();
 end
 
 return table.freeze(RepliServer);
