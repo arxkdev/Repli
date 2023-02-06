@@ -11,17 +11,14 @@ includeReadme = false # Optional
 [[home.features]]
 title = "Simple"
 description = "Repli is a simple, easy to use, and lightweight replication library for Roblox."
-image = "https://cdn-icons-png.flaticon.com/512/5579/5579268.png"
 
 [[home.features]]
 title = "Quick"
 description = "Repli is a quick and easy way to replicate data between the client and server."
-image = "https://cdn-icons-png.flaticon.com/512/1584/1584942.png"
 
 [[home.features]]
 title = "Lightweight"
 description = "Repli is a lightweight library that doesn't take up much space."
-image = "https://cdn-icons-png.flaticon.com/512/5824/5824968.png"
 
 [[classOrder]]
 section = "Repli"
