@@ -1,5 +1,8 @@
 <div align="center">
 
+Main code lint status: 
+[![Lint](https://github.com/Kumarion/Repli/actions/workflows/lint.yaml/badge.svg)](https://github.com/Kumarion/Repli/actions/workflows/lint.yaml)
+
 Documentation build status: 
 [![Documentation](https://github.com/Kumarion/Repli/actions/workflows/docs.yaml/badge.svg)](https://github.com/Kumarion/Repli/actions/workflows/docs.yaml)
 
