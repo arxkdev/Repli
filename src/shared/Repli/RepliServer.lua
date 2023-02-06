@@ -153,6 +153,52 @@ end
 --     return (client.Name == "Player1");
 -- end, 10);
 
+-- Update a value for all clients
+--[=[
+    Updates the value for all clients
+
+    @param transformerFunction function
+]=]
+function RepliServer:updateValue(transformerFunction)
+    local newValue = transformerFunction(self._value);
+    self:setValue(newValue);
+end
+-- value:updateValue(function(oldValue)
+--     return oldValue + 1;
+-- end);
+
+-- Update a value for a specific client
+--[=[
+    Updates the value for a specific client
+
+    @param client Player
+    @param transformerFunction function
+]=]
+function RepliServer:updateValueForClient(client, transformerFunction)
+    local newValue = transformerFunction(self._clientValues[client]);
+    self:setValueForClient(client, newValue);
+end
+-- value:updateValueForClient(player1, function(oldValue)
+--     return oldValue + 1;
+-- end);
+
+-- Update a value for a list of clients
+--[=[
+    Updates the value for a list of clients
+
+    @param clients table
+    @param transformerFunction function
+]=]
+function RepliServer:updateValueForList(clients, transformerFunction)
+    for _, client in clients do
+        local newValue = transformerFunction(self._clientValues[client]);
+        self:updateValueForClient(client, newValue);
+    end;
+end
+-- value:updateValueForList({player1, player2}, function(oldValue)
+--     return oldValue + 1;
+-- end);
+
 -- Get value for all clients
 --[=[
     Gets the value for all clients

@@ -18,7 +18,7 @@ local function updateMarket()
     local newMarket = {};
     for resource, value in pairs(previousMarket) do
         newMarket[resource] = value + math.random(-100, 100);
-    end
+    end;
     Market:setValue(newMarket);
 end
 
