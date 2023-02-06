@@ -9,7 +9,6 @@ local ScreenGui = PlayerGui:WaitForChild("ScreenGui");
 local TestPlayerData = Repli.fromValue("TestPlayerData");
 local Test2 = Repli.fromValue("Test2");
 
-
 -- Subscribe to it and print the value, and also update the text label
 local function subscribedFunctionTestPlayerdData(value)
     print("Client subscribed to TestPlayerData: ", value);
