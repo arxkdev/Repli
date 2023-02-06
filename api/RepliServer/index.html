@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="generator" content="Docusaurus v2.0.1">
 <title data-rh="true">RepliServer | Repli</title><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://kumarion.github.io/Repli/api/RepliServer"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docusaurus_tag" content="default"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docsearch:docusaurus_tag" content="default"><meta data-rh="true" property="og:title" content="RepliServer | Repli"><link data-rh="true" rel="canonical" href="https://kumarion.github.io/Repli/api/RepliServer"><link data-rh="true" rel="alternate" href="https://kumarion.github.io/Repli/api/RepliServer" hreflang="en"><link data-rh="true" rel="alternate" href="https://kumarion.github.io/Repli/api/RepliServer" hreflang="x-default"><link rel="stylesheet" href="/Repli/assets/css/styles.396b872c.css">
-<link rel="preload" href="/Repli/assets/js/runtime~main.c46b1061.js" as="script">
-<link rel="preload" href="/Repli/assets/js/main.54566611.js" as="script">
+<link rel="preload" href="/Repli/assets/js/runtime~main.d42b8266.js" as="script">
+<link rel="preload" href="/Repli/assets/js/main.21df193f.js" as="script">
 </head>
 <body class="navigation-with-keyboard">
 <script>!function(){function e(e){document.documentElement.setAttribute("data-theme",e)}var t=function(){var e=null;try{e=localStorage.getItem("theme")}catch(e){}return e}();null!==t?e(t):window.matchMedia("(prefers-color-scheme: dark)").matches?e("dark"):(window.matchMedia("(prefers-color-scheme: light)").matches,e("light"))}()</script><div id="__docusaurus">
@@ -24,23 +24,29 @@
 <p>Sets the value for a list of clients</p>
 </div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="setValueForFilter"><code style="text-decoration:none">setValueForFilter</code><a class="hash-link" href="#setValueForFilter" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Kumarion/Repli/blob/main/src/shared/Repli/RepliServer.lua#L145"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>RepliServer<!-- -->:</code><code class="green_DgR4">setValueForFilter</code><code>(</code><div class="inset_uKQm"><div><code>predicate<!-- -->: </code><code class="blue_P4bS">function</code><code>,</code></div><div><code>value<!-- -->: </code><code class="blue_P4bS">any</code></div></div><code>) → </code><code>(</code><code>)</code></div><div>
 <p>Sets the value for a filter of clients</p>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="getValue"><code style="text-decoration:none">getValue</code><a class="hash-link" href="#getValue" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Kumarion/Repli/blob/main/src/shared/Repli/RepliServer.lua#L162"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>RepliServer<!-- -->:</code><code class="green_DgR4">getValue</code><code>(</code><code>) → </code><code class="blue_P4bS">any</code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="updateValue"><code style="text-decoration:none">updateValue</code><a class="hash-link" href="#updateValue" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Kumarion/Repli/blob/main/src/shared/Repli/RepliServer.lua#L162"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>RepliServer<!-- -->:</code><code class="green_DgR4">updateValue</code><code>(</code><code>transformerFunction<!-- -->: </code><code class="blue_P4bS">function</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Updates the value for all clients</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="updateValueForClient"><code style="text-decoration:none">updateValueForClient</code><a class="hash-link" href="#updateValueForClient" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Kumarion/Repli/blob/main/src/shared/Repli/RepliServer.lua#L177"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>RepliServer<!-- -->:</code><code class="green_DgR4">updateValueForClient</code><code>(</code><div class="inset_uKQm"><div><code>client<!-- -->: </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="https://developer.roblox.com/en-us/api-reference/class/Player" target="_blank" rel="noopener noreferrer">Player<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound" style="color:gray;vertical-align:middle;margin-left:2px"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></code><code>,</code></div><div><code>transformerFunction<!-- -->: </code><code class="blue_P4bS">function</code></div></div><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Updates the value for a specific client</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="updateValueForList"><code style="text-decoration:none">updateValueForList</code><a class="hash-link" href="#updateValueForList" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Kumarion/Repli/blob/main/src/shared/Repli/RepliServer.lua#L192"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>RepliServer<!-- -->:</code><code class="green_DgR4">updateValueForList</code><code>(</code><div class="inset_uKQm"><div><code>clients<!-- -->: </code><code class="blue_P4bS">table</code><code>,</code></div><div><code>transformerFunction<!-- -->: </code><code class="blue_P4bS">function</code></div></div><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Updates the value for a list of clients</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="getValue"><code style="text-decoration:none">getValue</code><a class="hash-link" href="#getValue" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Kumarion/Repli/blob/main/src/shared/Repli/RepliServer.lua#L208"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>RepliServer<!-- -->:</code><code class="green_DgR4">getValue</code><code>(</code><code>) → </code><code class="blue_P4bS">any</code></div><div>
 <p>Gets the value for all clients</p>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="getValueForClient"><code style="text-decoration:none">getValueForClient</code><a class="hash-link" href="#getValueForClient" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Kumarion/Repli/blob/main/src/shared/Repli/RepliServer.lua#L173"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>RepliServer<!-- -->:</code><code class="green_DgR4">getValueForClient</code><code>(</code><code>client<!-- -->: </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="https://developer.roblox.com/en-us/api-reference/class/Player" target="_blank" rel="noopener noreferrer">Player<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound" style="color:gray;vertical-align:middle;margin-left:2px"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></code><code>) → </code><code class="blue_P4bS">any</code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="getValueForClient"><code style="text-decoration:none">getValueForClient</code><a class="hash-link" href="#getValueForClient" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Kumarion/Repli/blob/main/src/shared/Repli/RepliServer.lua#L219"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>RepliServer<!-- -->:</code><code class="green_DgR4">getValueForClient</code><code>(</code><code>client<!-- -->: </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="https://developer.roblox.com/en-us/api-reference/class/Player" target="_blank" rel="noopener noreferrer">Player<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound" style="color:gray;vertical-align:middle;margin-left:2px"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></code><code>) → </code><code class="blue_P4bS">any</code></div><div>
 <p>Gets the value for a specific client</p>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="clearValueForClient"><code style="text-decoration:none">clearValueForClient</code><a class="hash-link" href="#clearValueForClient" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Kumarion/Repli/blob/main/src/shared/Repli/RepliServer.lua#L183"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>RepliServer<!-- -->:</code><code class="green_DgR4">clearValueForClient</code><code>(</code><code>client<!-- -->: </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="https://developer.roblox.com/en-us/api-reference/class/Player" target="_blank" rel="noopener noreferrer">Player<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound" style="color:gray;vertical-align:middle;margin-left:2px"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></code><code>) → </code><code>(</code><code>)</code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="clearValueForClient"><code style="text-decoration:none">clearValueForClient</code><a class="hash-link" href="#clearValueForClient" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Kumarion/Repli/blob/main/src/shared/Repli/RepliServer.lua#L229"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>RepliServer<!-- -->:</code><code class="green_DgR4">clearValueForClient</code><code>(</code><code>client<!-- -->: </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="https://developer.roblox.com/en-us/api-reference/class/Player" target="_blank" rel="noopener noreferrer">Player<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound" style="color:gray;vertical-align:middle;margin-left:2px"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></code><code>) → </code><code>(</code><code>)</code></div><div>
 <p>Clears the value for a specific client</p>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="clearValueForList"><code style="text-decoration:none">clearValueForList</code><a class="hash-link" href="#clearValueForList" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Kumarion/Repli/blob/main/src/shared/Repli/RepliServer.lua#L198"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>RepliServer<!-- -->:</code><code class="green_DgR4">clearValueForList</code><code>(</code><code>clients<!-- -->: </code><code class="blue_P4bS">table</code><code>) → </code><code>(</code><code>)</code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="clearValueForList"><code style="text-decoration:none">clearValueForList</code><a class="hash-link" href="#clearValueForList" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Kumarion/Repli/blob/main/src/shared/Repli/RepliServer.lua#L244"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>RepliServer<!-- -->:</code><code class="green_DgR4">clearValueForList</code><code>(</code><code>clients<!-- -->: </code><code class="blue_P4bS">table</code><code>) → </code><code>(</code><code>)</code></div><div>
 <p>Clears the value for a list of clients</p>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="clearValue"><code style="text-decoration:none">clearValue</code><a class="hash-link" href="#clearValue" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Kumarion/Repli/blob/main/src/shared/Repli/RepliServer.lua#L208"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>RepliServer<!-- -->:</code><code class="green_DgR4">clearValue</code><code>(</code><code>) → </code><code>(</code><code>)</code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="clearValue"><code style="text-decoration:none">clearValue</code><a class="hash-link" href="#clearValue" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Kumarion/Repli/blob/main/src/shared/Repli/RepliServer.lua#L254"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>RepliServer<!-- -->:</code><code class="green_DgR4">clearValue</code><code>(</code><code>) → </code><code>(</code><code>)</code></div><div>
 <p>Clears the value for all clients</p>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="clearValueForFilter"><code style="text-decoration:none">clearValueForFilter</code><a class="hash-link" href="#clearValueForFilter" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Kumarion/Repli/blob/main/src/shared/Repli/RepliServer.lua#L219"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>RepliServer<!-- -->:</code><code class="green_DgR4">clearValueForFilter</code><code>(</code><code>predicate<!-- -->: </code><code class="blue_P4bS">function</code><code>) → </code><code>(</code><code>)</code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="clearValueForFilter"><code style="text-decoration:none">clearValueForFilter</code><a class="hash-link" href="#clearValueForFilter" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Kumarion/Repli/blob/main/src/shared/Repli/RepliServer.lua#L265"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>RepliServer<!-- -->:</code><code class="green_DgR4">clearValueForFilter</code><code>(</code><code>predicate<!-- -->: </code><code class="blue_P4bS">function</code><code>) → </code><code>(</code><code>)</code></div><div>
 <p>Clears the value for a filter of clients</p>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="addClient"><code style="text-decoration:none">addClient</code><a class="hash-link" href="#addClient" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Kumarion/Repli/blob/main/src/shared/Repli/RepliServer.lua#L233"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>RepliServer<!-- -->:</code><code class="green_DgR4">addClient</code><code>(</code><code>client<!-- -->: </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="https://developer.roblox.com/en-us/api-reference/class/Player" target="_blank" rel="noopener noreferrer">Player<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound" style="color:gray;vertical-align:middle;margin-left:2px"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></code><code>) → </code><code>(</code><code>)</code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="addClient"><code style="text-decoration:none">addClient</code><a class="hash-link" href="#addClient" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Kumarion/Repli/blob/main/src/shared/Repli/RepliServer.lua#L279"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>RepliServer<!-- -->:</code><code class="green_DgR4">addClient</code><code>(</code><code>client<!-- -->: </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="https://developer.roblox.com/en-us/api-reference/class/Player" target="_blank" rel="noopener noreferrer">Player<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound" style="color:gray;vertical-align:middle;margin-left:2px"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></code><code>) → </code><code>(</code><code>)</code></div><div>
 <p>Adds a client to the class</p>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="removeClient"><code style="text-decoration:none">removeClient</code><a class="hash-link" href="#removeClient" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Kumarion/Repli/blob/main/src/shared/Repli/RepliServer.lua#L246"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>RepliServer<!-- -->:</code><code class="green_DgR4">removeClient</code><code>(</code><code>client<!-- -->: </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="https://developer.roblox.com/en-us/api-reference/class/Player" target="_blank" rel="noopener noreferrer">Player<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound" style="color:gray;vertical-align:middle;margin-left:2px"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></code><code>) → </code><code>(</code><code>)</code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="removeClient"><code style="text-decoration:none">removeClient</code><a class="hash-link" href="#removeClient" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Kumarion/Repli/blob/main/src/shared/Repli/RepliServer.lua#L292"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>RepliServer<!-- -->:</code><code class="green_DgR4">removeClient</code><code>(</code><code>client<!-- -->: </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="https://developer.roblox.com/en-us/api-reference/class/Player" target="_blank" rel="noopener noreferrer">Player<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound" style="color:gray;vertical-align:middle;margin-left:2px"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></code><code>) → </code><code>(</code><code>)</code></div><div>
 <p>Removes a client from the class</p>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="destroy"><code style="text-decoration:none">destroy</code><a class="hash-link" href="#destroy" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Kumarion/Repli/blob/main/src/shared/Repli/RepliServer.lua#L256"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>RepliServer<!-- -->:</code><code class="green_DgR4">destroy</code><code>(</code><code>) → </code><code>(</code><code>)</code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="destroy"><code style="text-decoration:none">destroy</code><a class="hash-link" href="#destroy" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Kumarion/Repli/blob/main/src/shared/Repli/RepliServer.lua#L302"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>RepliServer<!-- -->:</code><code class="green_DgR4">destroy</code><code>(</code><code>) → </code><code>(</code><code>)</code></div><div>
 <p>Destroys the class</p>
 </div></div></article></div><details><summary>Show raw api</summary><pre style="max-width:100%;white-space:pre-wrap">{
     &quot;functions&quot;: [
@@ -155,6 +161,67 @@
             }
         },
         {
+            &quot;name&quot;: &quot;updateValue&quot;,
+            &quot;desc&quot;: &quot;Updates the value for all clients&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;transformerFunction&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;function&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 162,
+                &quot;path&quot;: &quot;src/shared/Repli/RepliServer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;updateValueForClient&quot;,
+            &quot;desc&quot;: &quot;Updates the value for a specific client&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;client&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;Player&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;transformerFunction&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;function&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 177,
+                &quot;path&quot;: &quot;src/shared/Repli/RepliServer.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;updateValueForList&quot;,
+            &quot;desc&quot;: &quot;Updates the value for a list of clients&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;clients&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;table&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;transformerFunction&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;function&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 192,
+                &quot;path&quot;: &quot;src/shared/Repli/RepliServer.lua&quot;
+            }
+        },
+        {
             &quot;name&quot;: &quot;getValue&quot;,
             &quot;desc&quot;: &quot;Gets the value for all clients&quot;,
             &quot;params&quot;: [],
@@ -166,7 +233,7 @@
             ],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 162,
+                &quot;line&quot;: 208,
                 &quot;path&quot;: &quot;src/shared/Repli/RepliServer.lua&quot;
             }
         },
@@ -188,7 +255,7 @@
             ],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 173,
+                &quot;line&quot;: 219,
                 &quot;path&quot;: &quot;src/shared/Repli/RepliServer.lua&quot;
             }
         },
@@ -205,7 +272,7 @@
             &quot;returns&quot;: [],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 183,
+                &quot;line&quot;: 229,
                 &quot;path&quot;: &quot;src/shared/Repli/RepliServer.lua&quot;
             }
         },
@@ -222,7 +289,7 @@
             &quot;returns&quot;: [],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 198,
+                &quot;line&quot;: 244,
                 &quot;path&quot;: &quot;src/shared/Repli/RepliServer.lua&quot;
             }
         },
@@ -233,7 +300,7 @@
             &quot;returns&quot;: [],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 208,
+                &quot;line&quot;: 254,
                 &quot;path&quot;: &quot;src/shared/Repli/RepliServer.lua&quot;
             }
         },
@@ -250,7 +317,7 @@
             &quot;returns&quot;: [],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 219,
+                &quot;line&quot;: 265,
                 &quot;path&quot;: &quot;src/shared/Repli/RepliServer.lua&quot;
             }
         },
@@ -267,7 +334,7 @@
             &quot;returns&quot;: [],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 233,
+                &quot;line&quot;: 279,
                 &quot;path&quot;: &quot;src/shared/Repli/RepliServer.lua&quot;
             }
         },
@@ -284,7 +351,7 @@
             &quot;returns&quot;: [],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 246,
+                &quot;line&quot;: 292,
                 &quot;path&quot;: &quot;src/shared/Repli/RepliServer.lua&quot;
             }
         },
@@ -295,7 +362,7 @@
             &quot;returns&quot;: [],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 256,
+                &quot;line&quot;: 302,
                 &quot;path&quot;: &quot;src/shared/Repli/RepliServer.lua&quot;
             }
         }
@@ -332,8 +399,8 @@
         &quot;line&quot;: 22,
         &quot;path&quot;: &quot;src/shared/Repli/RepliServer.lua&quot;
     }
-}</pre></details></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#types" class="table-of-contents__link toc-highlight">Types</a></li><li><a href="#properties" class="table-of-contents__link toc-highlight">Properties</a><ul><li><a href="#remoteEvent" class="table-of-contents__link toc-highlight">remoteEvent</a></li><li><a href="#value" class="table-of-contents__link toc-highlight">value</a></li></ul></li><li><a href="#functions" class="table-of-contents__link toc-highlight">Functions</a><ul><li><a href="#addClient" class="table-of-contents__link toc-highlight">:addClient</a></li><li><a href="#clearValue" class="table-of-contents__link toc-highlight">:clearValue</a></li><li><a href="#clearValueForClient" class="table-of-contents__link toc-highlight">:clearValueForClient</a></li><li><a href="#clearValueForFilter" class="table-of-contents__link toc-highlight">:clearValueForFilter</a></li><li><a href="#clearValueForList" class="table-of-contents__link toc-highlight">:clearValueForList</a></li><li><a href="#destroy" class="table-of-contents__link toc-highlight">:destroy</a></li><li><a href="#getValue" class="table-of-contents__link toc-highlight">:getValue</a></li><li><a href="#getValueForClient" class="table-of-contents__link toc-highlight">:getValueForClient</a></li><li><a href="#removeClient" class="table-of-contents__link toc-highlight">:removeClient</a></li><li><a href="#setValue" class="table-of-contents__link toc-highlight">:setValue</a></li><li><a href="#setValueForClient" class="table-of-contents__link toc-highlight">:setValueForClient</a></li><li><a href="#setValueForFilter" class="table-of-contents__link toc-highlight">:setValueForFilter</a></li><li><a href="#setValueForList" class="table-of-contents__link toc-highlight">:setValueForList</a></li><li><a href="#createValue" class="table-of-contents__link toc-highlight">.createValue</a></li></ul></li></ul></div></div></div></div></main></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2023 Kumarion. Built with Moonwave and Docusaurus</div></div></div></footer></div>
-<script src="/Repli/assets/js/runtime~main.c46b1061.js"></script>
-<script src="/Repli/assets/js/main.54566611.js"></script>
+}</pre></details></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#types" class="table-of-contents__link toc-highlight">Types</a></li><li><a href="#properties" class="table-of-contents__link toc-highlight">Properties</a><ul><li><a href="#remoteEvent" class="table-of-contents__link toc-highlight">remoteEvent</a></li><li><a href="#value" class="table-of-contents__link toc-highlight">value</a></li></ul></li><li><a href="#functions" class="table-of-contents__link toc-highlight">Functions</a><ul><li><a href="#addClient" class="table-of-contents__link toc-highlight">:addClient</a></li><li><a href="#clearValue" class="table-of-contents__link toc-highlight">:clearValue</a></li><li><a href="#clearValueForClient" class="table-of-contents__link toc-highlight">:clearValueForClient</a></li><li><a href="#clearValueForFilter" class="table-of-contents__link toc-highlight">:clearValueForFilter</a></li><li><a href="#clearValueForList" class="table-of-contents__link toc-highlight">:clearValueForList</a></li><li><a href="#destroy" class="table-of-contents__link toc-highlight">:destroy</a></li><li><a href="#getValue" class="table-of-contents__link toc-highlight">:getValue</a></li><li><a href="#getValueForClient" class="table-of-contents__link toc-highlight">:getValueForClient</a></li><li><a href="#removeClient" class="table-of-contents__link toc-highlight">:removeClient</a></li><li><a href="#setValue" class="table-of-contents__link toc-highlight">:setValue</a></li><li><a href="#setValueForClient" class="table-of-contents__link toc-highlight">:setValueForClient</a></li><li><a href="#setValueForFilter" class="table-of-contents__link toc-highlight">:setValueForFilter</a></li><li><a href="#setValueForList" class="table-of-contents__link toc-highlight">:setValueForList</a></li><li><a href="#updateValue" class="table-of-contents__link toc-highlight">:updateValue</a></li><li><a href="#updateValueForClient" class="table-of-contents__link toc-highlight">:updateValueForClient</a></li><li><a href="#updateValueForList" class="table-of-contents__link toc-highlight">:updateValueForList</a></li><li><a href="#createValue" class="table-of-contents__link toc-highlight">.createValue</a></li></ul></li></ul></div></div></div></div></main></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2023 Kumarion. Built with Moonwave and Docusaurus</div></div></div></footer></div>
+<script src="/Repli/assets/js/runtime~main.d42b8266.js"></script>
+<script src="/Repli/assets/js/main.21df193f.js"></script>
 </body>
 </html>
