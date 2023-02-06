@@ -25,7 +25,7 @@ If applicable, add screenshots to help explain your problem.
 
 **Environment (please provide the following information):**
  - OS: [e.g. Windows, Mac, Linux]
- - Package Version(s) [e.g. Signal: 0.1.0]
+ - Package Version(s) [e.g. Repli: 0.0.1-alpha]
 
 **Additional Context**
 Add any additional pieces of context regarding your problem here.
