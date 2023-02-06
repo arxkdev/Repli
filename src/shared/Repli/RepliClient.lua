@@ -144,8 +144,8 @@ function RepliClient:subscribe(callback)
     task.defer(function()
         if (self._isReady) then
             callback(self._value);
-        end
-    end)
+        end;
+    end);
 
     return self._changedSignal:Connect(callback);
 end

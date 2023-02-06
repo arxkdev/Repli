@@ -19,8 +19,8 @@ local Players = game:GetService("Players");
     @class RepliServer
     @server
 ]=]
-local RepliServer = {}
-RepliServer.__index = RepliServer
+local RepliServer = {};
+RepliServer.__index = RepliServer;
 
 -- Example
 --[[
@@ -92,7 +92,7 @@ function RepliServer.createValue(className, value)
         if (clientClassReady == className) then
             -- Adds a client for the class
             self:addClient(player);
-        end
+        end;
     end);
 
     -- Return self
@@ -182,7 +182,7 @@ end
 ]=]
 function RepliServer:clearValueForClient(client)
     if (not self._clientValues[client]) then
-        return
+        return;
     end;
 
     self._clientValues[client] = nil;
