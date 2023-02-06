@@ -1,4 +1,4 @@
-name: Build for Repli
+name: Lint for Repli
 
 on:
   push:
