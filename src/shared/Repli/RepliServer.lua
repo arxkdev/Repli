@@ -1,7 +1,5 @@
 -- Server side of the replication system
 local Players = game:GetService("Players");
-local Promise = require(script.Parent.Promise);
-local Signal = require(script.Parent.Signal);
 
 --[=[
     @within RepliServer
@@ -23,8 +21,6 @@ local Signal = require(script.Parent.Signal);
 ]=]
 local RepliServer = {}
 RepliServer.__index = RepliServer
-
-local insert = table.insert;
 
 -- Example
 --[[
@@ -92,8 +88,8 @@ function RepliServer.createValue(className, value)
     end);
 
     -- A client has said they have a class ready
-    classReady.OnServerEvent:Connect(function(player, classReady)
-        if (classReady == className) then
+    classReady.OnServerEvent:Connect(function(player, clientClassReady)
+        if (clientClassReady == className) then
             -- Adds a client for the class
             self:addClient(player);
         end

@@ -1,4 +1,3 @@
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Promise = require(script.Parent.Promise);
 local Signal = require(script.Parent.Signal);
 
@@ -47,7 +46,7 @@ end);
 
 -- Wait for a class to be connected to
 function WaitForClass(class)
-    return Promise.new(function(resolve, reject)
+    return Promise.new(function(resolve)
         if (ClassesConnected[class]) then
             resolve(ClassesConnected[class]);
             return;
