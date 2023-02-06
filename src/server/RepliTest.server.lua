@@ -3,6 +3,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Common = ReplicatedStorage:WaitForChild("Common");
 local Repli = require(Common:WaitForChild("Repli"));
 
+
 local Default = {
     ["Gems"] = 0;
     ["Level"] = 1;
