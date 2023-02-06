@@ -108,6 +108,10 @@ end
 --[=[
     Gets the changed signal for the global value
 
+    :::note
+    You can only subscribe to global values ie. using ``value:setValue(x)`` and not ``value:setValueForClient(player, x)``
+    :::
+
     @return Signal
 ]=]
 function RepliServer:subscribe(callback)
@@ -123,7 +127,7 @@ end
 function RepliServer:setValue(value)
     self._value = value;
     self._remoteEvent:FireAllClients(value);
-    self._valueChanged:Fire(self._value);
+    self._valueChanged:Fire(value);
 end
 
 -- Set value for a specific client
