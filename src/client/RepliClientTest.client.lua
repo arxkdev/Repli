@@ -11,15 +11,14 @@ local Test2 = Repli.fromValue("Test2");
 
 -- Subscribe to it and print the value, and also update the text label
 local function subscribedFunctionTestPlayerdData(value)
-    -- print("Client subscribed to TestPlayerData: ", value);
-
     print("Player gems:", value.Gems);
     ScreenGui.TextLabel.Text = "Gems: " .. value.Gems;
 end
 TestPlayerData:subscribe(subscribedFunctionTestPlayerdData);
 
+-- Subscribe to the test value and print the value
 local function subscribedFunctionTest2(value)
-    print("Client subscribed to Test2: ", value);
+    print("Test2: ", value);
 end
 Test2:subscribe(subscribedFunctionTest2);
 
