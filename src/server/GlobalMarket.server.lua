@@ -4,22 +4,26 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Common = ReplicatedStorage:WaitForChild("Common");
 local Repli = require(Common:WaitForChild("Repli"));
 
-local Market = Repli.createValue("Market", {
-    ["Gold"] = 1000;
-    ["Wood"] = 1000;
-    ["Stone"] = 1000;
-    ["Iron"] = 1000;
-    ["Food"] = 1000;
-});
+local DefaultMarket = {
+    ["Wood"] = 100,
+    ["Stone"] = 100,
+    ["Iron"] = 100,
+    ["Gold"] = 100,
+    ["Diamond"] = 100,
+    ["Obsidian"] = 100,
+};
+
+local Market = Repli.createValue("Market", DefaultMarket);
 
 local function updateMarket()
     -- Go through the market and update with random values
-    local previousMarket = Market:getValue();
-    local newMarket = {};
-    for resource, value in pairs(previousMarket) do
-        newMarket[resource] = value + math.random(-100, 100);
-    end;
-    Market:setValue(newMarket);
+    Market:updateValue(function(oldMarket)
+        local newMarket = oldMarket or DefaultMarket;
+        for resource, value in pairs(newMarket) do
+            newMarket[resource] = value + math.random(-100, 100);
+        end;
+        return newMarket;
+    end);
 end
 
 -- Update periodically
