@@ -122,16 +122,15 @@ end
 function RepliClient:onReady()
     if (self._isReady) then
         Promise.resolve(self._value);
-    end
+    end;
 
     return Promise.fromEvent(self._remoteEvent.OnClientEvent, function(value)
-		self._value = value
-		self._isReady = true
-		return true
-	end)
-    :andThen(function()
-		return self._value
-	end)
+        self._value = value;
+        self._isReady = true;
+        return true;
+    end):_andThen(function()
+        return self._value;
+    end);
 end
 
 -- Subscribe to changes
