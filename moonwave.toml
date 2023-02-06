@@ -6,7 +6,7 @@ changelog = true
 
 [home]
 enabled = true
-includeReadme = false # Optional
+includeReadme = true # Optional
 
 [[home.features]]
 title = "Simple"
