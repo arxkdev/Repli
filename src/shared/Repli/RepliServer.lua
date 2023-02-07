@@ -108,10 +108,11 @@ end
 --[=[
     Gets the changed signal for the global value
 
-    :::note
+    :::caution
     You can only subscribe to global values ie. using ``value:setValue(x)`` and not ``value:setValueForClient(player, x)``
     :::
 
+    @param callback function
     @return Signal
 ]=]
 function RepliServer:subscribe(callback)
