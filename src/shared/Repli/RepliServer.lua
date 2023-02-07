@@ -12,13 +12,6 @@ local Signal = require(script.Parent.Signal);
     The value of the created class
 ]=]
 --[=[
-    @within RepliServer
-    @readonly
-    @prop remoteEvent any
-
-    The remote event for the created value/class.
-]=]
---[=[
     @class RepliServer
     @server
 ]=]
@@ -65,6 +58,11 @@ classConnect.Parent = script.Parent;
 --[=[
     Creates a new value that can be replicated to the clients
 
+    Example:
+    ```lua
+    local testValue = Repli.createValue("TestValue", 0);
+    ```
+
     @param className string
     @param value any
     @return RepliServer
@@ -106,7 +104,14 @@ end
 
 -- Gets the changed signal for the global value
 --[=[
-    Gets the changed signal for the global value
+    Gets the changed signal for the global value.
+
+    Example:
+    ```lua
+    testValue:subscribe(function(newValue)
+        print(newValue);
+    end);
+    ```
 
     :::caution
     You can only subscribe to global values ie. using ``value:setValue(x)`` and not ``value:setValueForClient(player, x)``
@@ -121,7 +126,12 @@ end
 
 -- Set value for all clients
 --[=[
-    Sets the value for all clients
+    Sets the value for all clients.
+
+    Example:
+    ```lua
+    testValue:setValue(5);
+    ```
 
     @param value any
 ]=]
@@ -133,7 +143,12 @@ end
 
 -- Set value for a specific client
 --[=[
-    Sets the value for a specific client
+    Sets the value for a specific client.
+
+    Example:
+    ```lua
+    testValue:setValueForClient(player, 5);
+    ```
 
     @param client Player
     @param value any
@@ -145,7 +160,12 @@ end
 
 -- Set value for a list of clients
 --[=[
-    Sets the value for a list of clients
+    Sets the value for a list of clients.
+
+    Example:
+    ```lua
+    testValue:setValueForList({player1, player2}, 5);
+    ```
 
     @param clients table
     @param value any
@@ -158,25 +178,36 @@ end
 
 -- Set a value for a filter of clients with a predicate
 --[=[
-    Sets the value for a filter of clients
+    Sets the value for a filter of clients.
+
+    Example:
+    ```lua
+    testValue:setValueFilter(function(client)
+        return (client.Name == "Player1");
+    end, 10);
+    ```
 
     @param predicate function
     @param value any
 ]=]
-function RepliServer:setValueForFilter(predicate, value)
+function RepliServer:setValueFilter(predicate, value)
     for client, _ in self._clientValues do
         if (predicate(client)) then
             self:setValueForClient(client, value);
         end;
     end;
 end
--- value:setValueForFilter(function(client)
---     return (client.Name == "Player1");
--- end, 10);
 
 -- Update a value for all clients
 --[=[
-    Updates the value for all clients
+    Updates the value for all clients.
+
+    Example:
+    ```lua
+    testValue:updateValue(function(oldValue)
+        return oldValue + 1;
+    end);
+    ```
 
     @param transformerFunction function
 ]=]
@@ -184,13 +215,17 @@ function RepliServer:updateValue(transformerFunction)
     local newValue = transformerFunction(self._value);
     self:setValue(newValue);
 end
--- value:updateValue(function(oldValue)
---     return oldValue + 1;
--- end);
 
 -- Update a value for a specific client
 --[=[
-    Updates the value for a specific client
+    Updates the value for a specific client.
+
+    Example:
+    ```lua
+    testValue:updateValueForClient(player, function(oldValue)
+        return oldValue + 1;
+    end);
+    ```
 
     @param client Player
     @param transformerFunction function
@@ -199,13 +234,17 @@ function RepliServer:updateValueForClient(client, transformerFunction)
     local newValue = transformerFunction(self._clientValues[client]);
     self:setValueForClient(client, newValue);
 end
--- value:updateValueForClient(player1, function(oldValue)
---     return oldValue + 1;
--- end);
 
 -- Update a value for a list of clients
 --[=[
-    Updates the value for a list of clients
+    Updates the value for a list of clients.
+
+    Example:
+    ```lua
+    testValue:updateValueForList({player1, player2}, function(oldValue)
+        return oldValue + 1;
+    end);
+    ```
 
     @param clients table
     @param transformerFunction function
@@ -216,13 +255,15 @@ function RepliServer:updateValueForList(clients, transformerFunction)
         self:updateValueForClient(client, newValue);
     end;
 end
--- value:updateValueForList({player1, player2}, function(oldValue)
---     return oldValue + 1;
--- end);
 
 -- Get value for all clients
 --[=[
-    Gets the value for all clients
+    Gets the value for all clients.
+
+    Example:
+    ```lua
+    local gotValue = testValue:getValue();
+    ```
 
     @return any
 ]=]
@@ -232,7 +273,12 @@ end
 
 -- Get value for a specific client
 --[=[
-    Gets the value for a specific client
+    Gets the value for a specific client.
+
+    Example:
+    ```lua
+    local gotValueForPlayer = testValue:getValueForClient(player);
+    ```
 
     @param client Player
     @return any
@@ -243,7 +289,12 @@ end
 
 -- Clear a value for a specific client
 --[=[
-    Clears the value for a specific client
+    Clears the value for a specific client.
+
+    Example:
+    ```lua
+    testValue:clearValueForClient(player);
+    ```
 
     @param client Player
 ]=]
@@ -258,7 +309,12 @@ end
 
 -- Clear a value for a list of clients
 --[=[
-    Clears the value for a list of clients
+    Clears the value for a list of clients.
+
+    Example:
+    ```lua
+    testValue:clearValueForList({player1, player2});
+    ```
 
     @param clients table
 ]=]
@@ -270,7 +326,12 @@ end
 
 -- Clear a value for all clients
 --[=[
-    Clears the value for all clients
+    Clears the value for all clients.
+
+    Example:
+    ```lua
+    testValue:clearValue();
+    ```
 ]=]
 function RepliServer:clearValue()
     table.clear(self._clientValues);
@@ -279,11 +340,18 @@ end
 
 -- Clear value for a filter of clients with a predicate
 --[=[
-    Clears the value for a filter of clients
+    Clears the value for a filter of clients.
+
+    Example:
+    ```lua
+    testValue:clearValueFilter(function(client)
+        return (client.Name == "Player1");
+    end);
+    ```
 
     @param predicate function
 ]=]
-function RepliServer:clearValueForFilter(predicate)
+function RepliServer:clearValueFilter(predicate)
     for client, _ in self._clientValues do
         if (predicate(client)) then
             self:clearValueForClient(client);

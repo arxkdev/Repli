@@ -66,7 +66,13 @@ end
 
 -- Create a new RepliClient
 --[=[
-    Retrieves a new value (class) from the server and returns a RepliClient
+    Retrieves a new value (class) from the server and returns a RepliClient.
+
+    Example:
+    ```lua
+    local testValue = Repli.fromValue("TestValue");
+    ```
+
     @param class string
     @return RepliClient
 ]=]
@@ -107,7 +113,19 @@ end
 
 -- Check if this client class is ready
 --[=[
-    Returns true if the client is ready to receive data
+    Returns true if the client is ready to receive data.
+
+    Example:
+    ```lua
+    if (testValue:isReady()) then
+        print(testValue:getValue());
+    end;
+    ```
+
+    :::caution
+    This will return false if the client is not ready. Consider using ``onReady`` if you want to wait for the value to be ready.
+    :::
+
     @return boolean
 ]=]
 function RepliClient:isReady()
@@ -116,7 +134,15 @@ end
 
 -- Wait for the remote to be ready and fire the initial value
 --[=[
-    Returns a promise that resolves when the client is ready
+    Returns a promise that resolves when the client is ready.
+
+    Example:
+    ```lua
+    testValue:onReady():andThen(function()
+        print(testValue:getValue());
+    end);
+    ```
+
     @return Promise<any>
 ]=]
 function RepliClient:onReady()
@@ -136,7 +162,15 @@ end
 -- Subscribe to changes
 -- Does initial value and any further changes
 --[=[
-    Subscribes to changes
+    Subscribes to changes.
+
+    Example:
+    ```lua
+    testValue:subscribe(function(newValue)
+        print(newValue);
+    end);
+    ```
+
     @param callback function
     @return RBXScriptConnection
 ]=]
@@ -153,6 +187,11 @@ end
 -- Get the current value
 --[=[
     Returns the current value
+
+    Example:
+    ```lua
+    print(testValue:getValue());
+    ```
 
     :::caution
     This will return nil if the client is not ready. Consider using ``onReady`` if you want to wait for the value to be ready.
