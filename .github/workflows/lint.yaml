@@ -27,8 +27,10 @@ jobs:
       - name: Generate the standard library
         run: selene generate-roblox-std
 
+      # Run selene through the library folder
       - name: Source checking with Selene
         run: selene lib
 
+      # Run selene through the testing folder
       - name: Testing checking with Selene
         run: selene testing
