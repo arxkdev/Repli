@@ -28,4 +28,4 @@ jobs:
         run: selene generate-roblox-std
 
       - name: Source checking with Selene
-        run: selene src
+        run: selene
