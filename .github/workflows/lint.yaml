@@ -28,4 +28,7 @@ jobs:
         run: selene generate-roblox-std
 
       - name: Source checking with Selene
-        run: selene
+        run: selene lib
+
+      - name: Testing checking with Selene
+        run: selene testing
