@@ -1,8 +1,8 @@
 -- Here's a quick example of something like a global market for the server that is replicated to all clients.
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-local Common = ReplicatedStorage:WaitForChild("Common");
-local Repli = require(Common:WaitForChild("Repli"));
+local Lib = ReplicatedStorage:WaitForChild("lib");
+local Repli = require(Lib:WaitForChild("Repli"));
 
 local DefaultMarket = {
     ["Wood"] = 100,

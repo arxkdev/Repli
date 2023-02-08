@@ -1,8 +1,8 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage");
 local Players = game:GetService("Players");
 
-local Common = ReplicatedStorage:WaitForChild("Common");
-local Repli = require(Common:WaitForChild("Repli"));
+local Lib = ReplicatedStorage:WaitForChild("lib");
+local Repli = require(Lib:WaitForChild("Repli"));
 
 local RandomItems = Repli.fromValue("RandomItems");
 local Player = Players.LocalPlayer;

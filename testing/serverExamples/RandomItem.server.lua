@@ -2,8 +2,8 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage");
 local HttpService = game:GetService("HttpService");
 
-local Common = ReplicatedStorage:WaitForChild("Common");
-local Repli = require(Common:WaitForChild("Repli"));
+local Lib = ReplicatedStorage:WaitForChild("lib");
+local Repli = require(Lib:WaitForChild("Repli"));
 
 local DefaultRandomItems = {
     

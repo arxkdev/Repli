@@ -1,7 +1,7 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage");
 
-local Common = ReplicatedStorage:WaitForChild("Common");
-local Repli = require(Common:WaitForChild("Repli"));
+local Lib = ReplicatedStorage:WaitForChild("lib");
+local Repli = require(Lib:WaitForChild("Repli"));
 
 local PlayerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui");
 local ScreenGui = PlayerGui:WaitForChild("ScreenGui");
