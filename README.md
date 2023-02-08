@@ -1,6 +1,6 @@
-# Status:
 <div align="center">
 
+# Status:
 Main code lint status: 
 [![Lint](https://github.com/Kumarion/Repli/actions/workflows/lint.yaml/badge.svg)](https://github.com/Kumarion/Repli/actions/workflows/lint.yaml)
 
@@ -10,13 +10,13 @@ Documentation build status:
 Documentation publish status: 
 [![Published](https://github.com/Kumarion/Repli/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/Kumarion/Repli/actions/workflows/pages/pages-build-deployment)
 
-</div>
+---
 
 # Changelog:
-### 0.0.1-alpha
+## 0.0.1-alpha
 - Initial release
 
-### 0.0.2-alpha
+## 0.0.2-alpha
 - Added support for (filter functions, clear functions):
 ---
 Clearing:
@@ -38,3 +38,5 @@ Misc:
 - Added more examples in the code (not yet in the documentation)
 - Minor bug fixes.
 - Added examples on how to use each function.
+
+</div>
