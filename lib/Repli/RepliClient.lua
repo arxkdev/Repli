@@ -65,17 +65,6 @@ function WaitForClass(class)
 end
 
 -- Create a new RepliClient
---[=[
-    Retrieves a new value (class) from the server and returns a RepliClient.
-
-    Example:
-    ```lua
-    local testValue = Repli.fromValue("TestValue");
-    ```
-
-    @param class string
-    @return RepliClient
-]=]
 function RepliClient.fromValue(class)
     local self = setmetatable({}, RepliClient);
     self._isReady = false;
