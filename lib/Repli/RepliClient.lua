@@ -116,6 +116,10 @@ end
     Example:
     ```lua
     Repli.listenForCreation("TestValue", function(testValue)
+        -- Gett the initial value
+        local initialValue = testValue:getValue();
+
+        -- Listen for further changes
         testValue:subscribe(function(newValue)
             print(newValue);
         end);
