@@ -55,6 +55,29 @@ local classConnect = Instance.new("RemoteEvent");
 classConnect.Name = "_RepliConnect";
 classConnect.Parent = script.Parent;
 
+-- Helper Functions
+-- Function for checking for table equality
+local function CheckTableEquality(t1, t2)
+	if #t1 ~= #t2 then return false; end;
+
+	for i, v in pairs(t1) do
+		if (t2[i]) then
+			if (type(v) == "table" and type(t2[i]) == "table") then
+				if (not CheckTableEquality(v, t2[i])) then
+					return false;
+				end;
+			else
+				if (v ~= t2[i]) then
+					return false;
+				end;
+			end;
+		else
+			return false;
+		end;
+	end;
+	return true;
+end
+
 --[=[
     Creates a new value that can be replicated to the clients
 
@@ -100,6 +123,23 @@ function RepliServer.createValue(className, value)
 
     -- Return self
     return self;
+end
+
+-- This is a function for sanitizing a value, so that it can be sent to the client efficiently
+-- It'll mainly check for same values and do a recursion check for tables for looking at same values
+function RepliServer:SanitizeValue(value, value2)
+    -- Check if the value is a table and it's the same as the value2
+    if (typeof(value) == "table" and CheckTableEquality(value, value2)) then
+        return false;
+    end;
+
+    -- Check for regular values now
+    if (value == value2) then
+        return false;
+    end;
+
+    -- Return true if it's not the same
+    return true;
 end
 
 -- Gets the changed signal for the global value
@@ -155,7 +195,7 @@ end
 ]=]
 function RepliServer:setValueForClient(client, value)
     self._clientValues[client] = value;
-    self._remoteEvent:FireClient(client, value);
+    self._remoteEvent:FireClient(client, self._clientValues[client]);
 end
 
 -- Set value for a list of clients
@@ -231,7 +271,8 @@ end
     @param transformerFunction function
 ]=]
 function RepliServer:updateValueForClient(client, transformerFunction)
-    local newValue = transformerFunction(self._clientValues[client]);
+    local oldValue = table.clone(self._clientValues[client]);
+    local newValue = transformerFunction(oldValue);
     self:setValueForClient(client, newValue);
 end
 
@@ -251,7 +292,8 @@ end
 ]=]
 function RepliServer:updateValueForList(clients, transformerFunction)
     for _, client in clients do
-        local newValue = transformerFunction(self._clientValues[client]);
+        local oldValue = table.clone(self._clientValues[client]);
+        local newValue = transformerFunction(oldValue);
         self:updateValueForClient(client, newValue);
     end;
 end
@@ -370,6 +412,9 @@ function RepliServer:addClient(client)
 
     -- Tell the client they are connected to the class
     classConnect:FireClient(client, self._className, self._value);
+
+    -- Tell the client the value of the class
+    self:setValueForClient(client, self._value);
 end
 
 -- Removing a client from the class

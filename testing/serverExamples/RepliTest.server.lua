@@ -15,9 +15,9 @@ local TestPlayerData = Repli.createValue("TestPlayerData", Default);
 local Test2 = Repli.createValue("Test2", 3333);
 
 -- Subscribe to the value on the server
-Test2:subscribe(function(value)
-    print("Server subscribe: Test2 changed to " .. value);
-end)
+-- Test2:subscribe(function(value)
+--     print("Server subscribe: Test2 changed to " .. value);
+-- end)
 
 -- New event for increasing gems for specific player
 ReplicatedStorage.RemoteEvent.OnServerEvent:Connect(function(player)

@@ -4,11 +4,10 @@ local Players = game:GetService("Players");
 local Lib = ReplicatedStorage:WaitForChild("lib");
 local Repli = require(Lib:WaitForChild("Repli"));
 
-local RandomItems = Repli.fromValue("RandomItems");
 local Player = Players.LocalPlayer;
 local PlayerGui = Player:WaitForChild("PlayerGui");
 local ScreenGui = PlayerGui:WaitForChild("ScreenGui");
-local Template = script.RandomItem;
+local Template = ReplicatedStorage.RandomItem;
 
 -- Reconcile the items in the frame
 local function Reconcile(items)
@@ -21,6 +20,8 @@ end
 
 -- When the random items change, update the frame
 local function randomItemsChanged(newValue)
+    print(newValue);
+
     -- Reconcile the items in the frame
     Reconcile(newValue);
 
@@ -36,7 +37,14 @@ local function randomItemsChanged(newValue)
         newFrame.Parent = ScreenGui.RandomItemFrame.Items;
     end;
 end
-RandomItems:subscribe(randomItemsChanged);
+
+Repli.listenForCreation("RandomItems", function(randomItems)
+    -- We don't actually need to put this function here, but we can if we want to listen for the initial value
+    randomItemsChanged(randomItems:getValue());
+
+    -- Here's our subscribe function for listening to only further changes
+    randomItems:subscribe(randomItemsChanged);
+end);
 
 -- When the player clicks the button, add a random item
 ScreenGui.RandomItemFrame.AddRandomItem.MouseButton1Click:Connect(function()

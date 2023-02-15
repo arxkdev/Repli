@@ -36,15 +36,15 @@ end);
 local Players = game:GetService("Players");
 local Repli = require(game:GetService("ReplicatedStorage").Repli);
 
--- Get the value from the server
-local replicatedValue = Repli.fromValue("ReplicatedValue");
-
 -- Write a callback to be called when the value changes
 local function onValueChanged(newValue)
     -- Will initially print 0, but will print 5 after the server sets the value
     print(newValue); -- 5
 end
 
--- Add the callback to the subscriber method
-replicatedValue:subscribe(onValueChanged);
+-- Listen for the value to be created
+Repli.listenForCreation("ReplicatedValue", function(replicatedValue)
+    -- Add the callback to the subscriber method
+    replicatedValue:subscribe(onValueChanged);
+end);
 ```
