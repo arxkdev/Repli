@@ -69,9 +69,9 @@ function RepliClient.fromValue(class)
     local self = setmetatable({}, RepliClient);
     self._isReady = false;
     self._changedSignal = Signal.new();
-    self._value = nil;
     self._R = script.Parent._R;
     self._className = class;
+    self.value = nil;
 
     -- Tell server we are ready to receive data and whatnot
     local ClassReadyRemote = script.Parent._RepliClassReady;
@@ -80,19 +80,19 @@ function RepliClient.fromValue(class)
     -- Wait for the server to allow us to connect to the class
     WaitForClass(class):await();
     self._remoteEvent = self._R:FindFirstChild("RepliEvent_" .. class);
-    self._value = ClassesConnected[class];
+    self.value = ClassesConnected[class];
     self._isReady = true;
 
     -- Once we are connected, we can start listening for changes
     self:onReady():andThen(function()
         -- Listen for further changes
         self._furtherChanges = self._remoteEvent.OnClientEvent:Connect(function(value)
-            if (value == self._value) then
+            if (value == self.value) then
                 return;
             end;
 
             -- print(value);
-            self._value = value;
+            self.value = value;
             self._changedSignal:Fire(value);
         end);
     end);
@@ -167,15 +167,15 @@ end
 ]=]
 function RepliClient:onReady()
     if (self._isReady) then
-        Promise.resolve(self._value);
+        Promise.resolve(self.value);
     end;
 
     return Promise.fromEvent(self._remoteEvent.OnClientEvent, function(value)
-        self._value = value;
+        self.value = value;
         self._isReady = true;
         return true;
     end):_andThen(function()
-        return self._value;
+        return self.value;
     end);
 end
 
@@ -195,12 +195,6 @@ end
     @return RBXScriptConnection
 ]=]
 function RepliClient:subscribe(callback)
-    -- task.defer(function()
-    --     if (self._isReady) then
-    --         callback(self._value);
-    --     end;
-    -- end);
-
     return self._changedSignal:Connect(callback);
 end
 
@@ -220,7 +214,7 @@ end
     @return any
 ]=]
 function RepliClient:getValue()
-    return self._value;
+    return self.value;
 end
 
 return table.freeze(RepliClient);
