@@ -22,6 +22,12 @@ local Signal = require(script.Parent.Signal);
 local RepliClient = {};
 RepliClient.__index = RepliClient;
 
+-- Types
+type Repli = typeof(RepliClient.listenForCreation("", function() end));
+type RepliClient = typeof(RepliClient.fromValue(""));
+type Signal = typeof(Signal.new());
+type Promise = typeof(Promise);
+
 -- Example
 --[[
     local Repli = require(ReplicatedStorage.Repli)
@@ -37,15 +43,15 @@ RepliClient.__index = RepliClient;
 -- Connect to the server
 local NewClassConnected = Signal.new();
 local ClassesConnected = {};
-local ClassConnectRemote = script.Parent._RepliConnect;
-ClassConnectRemote.OnClientEvent:Connect(function(classConnectedTo, initialValue)
+local ClassConnectRemote: RemoteEvent = script.Parent._RepliConnect;
+ClassConnectRemote.OnClientEvent:Connect(function(classConnectedTo: string, initialValue: any)
     -- Update classes connected to and fire the signal with the initial value
     ClassesConnected[classConnectedTo] = initialValue;
     NewClassConnected:Fire(classConnectedTo, initialValue);
 end);
 
 -- Wait for a class to be connected to
-function WaitForClass(class)
+function WaitForClass(class: string)
     return Promise.new(function(resolve)
         if (ClassesConnected[class]) then
             resolve(ClassesConnected[class]);
@@ -53,7 +59,7 @@ function WaitForClass(class)
         end;
 
         local connection
-        connection = NewClassConnected:Connect(function(classConnectedTo, initialValue)
+        connection = NewClassConnected:Connect(function(classConnectedTo: string, initialValue: any)
             if (classConnectedTo ~= class) then
                 return;
             end;
@@ -65,7 +71,7 @@ function WaitForClass(class)
 end
 
 -- Create a new RepliClient
-function RepliClient.fromValue(class)
+function RepliClient.fromValue(class: string): RepliClient
     local self = setmetatable({}, RepliClient);
     self._isReady = false;
     self._changedSignal = Signal.new();
@@ -74,7 +80,7 @@ function RepliClient.fromValue(class)
     self.value = nil;
 
     -- Tell server we are ready to receive data and whatnot
-    local ClassReadyRemote = script.Parent._RepliClassReady;
+    local ClassReadyRemote: RemoteEvent = script.Parent._RepliClassReady;
     ClassReadyRemote:FireServer(class);
 
     -- Wait for the server to allow us to connect to the class
@@ -86,7 +92,7 @@ function RepliClient.fromValue(class)
     -- Once we are connected, we can start listening for changes
     self:onReady():andThen(function()
         -- Listen for further changes
-        self._furtherChanges = self._remoteEvent.OnClientEvent:Connect(function(value)
+        self._furtherChanges = self._remoteEvent.OnClientEvent:Connect(function(value: any)
             if (value == self.value) then
                 return;
             end;
@@ -119,7 +125,7 @@ end
     @param callback function
     @return RepliClient
 ]=]
-function RepliClient.listenForCreation(class, callback)
+function RepliClient.listenForCreation(class: string, callback: (RepliClient) -> ()): RepliClient
     local classObject = RepliClient.fromValue(class);
 
     -- Initial value
@@ -148,7 +154,7 @@ end
 
     @return boolean
 ]=]
-function RepliClient:isReady()
+function RepliClient:isReady(): boolean
     return self._isReady;
 end
 
@@ -165,12 +171,12 @@ end
 
     @return Promise<any>
 ]=]
-function RepliClient:onReady()
+function RepliClient:onReady(): Promise
     if (self._isReady) then
         Promise.resolve(self.value);
     end;
 
-    return Promise.fromEvent(self._remoteEvent.OnClientEvent, function(value)
+    return Promise.fromEvent(self._remoteEvent.OnClientEvent, function(value: any)
         self.value = value;
         self._isReady = true;
         return true;
@@ -194,7 +200,7 @@ end
     @param callback function
     @return RBXScriptConnection
 ]=]
-function RepliClient:subscribe(callback)
+function RepliClient:subscribe(callback: (any) -> ()): Signal
     return self._changedSignal:Connect(callback);
 end
 
@@ -213,8 +219,8 @@ end
 
     @return any
 ]=]
-function RepliClient:getValue()
+function RepliClient:getValue(): any
     return self.value;
 end
 
-return table.freeze(RepliClient);
+return table.freeze(RepliClient) :: RepliClient;

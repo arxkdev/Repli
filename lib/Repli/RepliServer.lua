@@ -18,6 +18,9 @@ local Signal = require(script.Parent.Signal);
 local RepliServer = {};
 RepliServer.__index = RepliServer;
 
+-- Types
+type Repli = typeof(RepliServer.createValue("", nil));
+
 -- Example
 --[[
 local Repli = require(ReplicatedStorage.Repli)
@@ -57,8 +60,8 @@ classConnect.Parent = script.Parent;
 
 -- Helper Functions
 -- Function for checking for table equality
-local function CheckTableEquality(t1, t2)
-	if #t1 ~= #t2 then return false; end;
+local function CheckTableEquality(t1: table, t2: table): boolean
+	if (#t1 ~= #t2) then return false; end;
 
 	for i, v in pairs(t1) do
 		if (t2[i]) then
@@ -75,6 +78,7 @@ local function CheckTableEquality(t1, t2)
 			return false;
 		end;
 	end;
+
 	return true;
 end
 
@@ -90,7 +94,7 @@ end
     @param value any
     @return RepliServer
 ]=]
-function RepliServer.createValue(className, value)
+function RepliServer.createValue(className: string, value: any): Repli
     local self = setmetatable({}, RepliServer);
     -- Value globally
     self._value = value;
@@ -114,7 +118,7 @@ function RepliServer.createValue(className, value)
     end);
 
     -- A client has said they have a class ready
-    classReady.OnServerEvent:Connect(function(player, clientClassReady)
+    classReady.OnServerEvent:Connect(function(player, clientClassReady: string)
         if (clientClassReady == className) then
             -- Adds a client for the class
             self:addClient(player);
@@ -127,7 +131,7 @@ end
 
 -- This is a function for sanitizing a value, so that it can be sent to the client efficiently
 -- It'll mainly check for same values and do a recursion check for tables for looking at same values
-function RepliServer:SanitizeValue(value, value2)
+function RepliServer:SanitizeValue(value: any, value2: any): boolean
     -- Check if the value is a table and it's the same as the value2
     if (typeof(value) == "table" and CheckTableEquality(value, value2)) then
         return false;
@@ -160,7 +164,7 @@ end
     @param callback function
     @return Signal
 ]=]
-function RepliServer:subscribe(callback)
+function RepliServer:subscribe(callback: (any) -> ())
     self._valueChanged:Connect(callback);
 end
 
@@ -175,7 +179,7 @@ end
 
     @param value any
 ]=]
-function RepliServer:setValue(value)
+function RepliServer:setValue(value: any)
     self._value = value;
     self._remoteEvent:FireAllClients(value);
     self._valueChanged:Fire(value);
@@ -193,7 +197,7 @@ end
     @param client Player
     @param value any
 ]=]
-function RepliServer:setValueForClient(client, value)
+function RepliServer:setValueForClient(client: Player, value: any)
     self._clientValues[client] = value;
     self._remoteEvent:FireClient(client, self._clientValues[client]);
 end
@@ -210,7 +214,7 @@ end
     @param clients table
     @param value any
 ]=]
-function RepliServer:setValueForList(clients, value)
+function RepliServer:setValueForList(clients: {Player}, value: any)
     for _, client in clients do
         self:setValueForClient(client, value);
     end;
@@ -230,7 +234,7 @@ end
     @param predicate function
     @param value any
 ]=]
-function RepliServer:setValueFilter(predicate, value)
+function RepliServer:setValueFilter(predicate: (Player) -> (boolean), value: any)
     for client, _ in self._clientValues do
         if (predicate(client)) then
             self:setValueForClient(client, value);
@@ -251,7 +255,7 @@ end
 
     @param transformerFunction function
 ]=]
-function RepliServer:updateValue(transformerFunction)
+function RepliServer:updateValue(transformerFunction: (any) -> (any))
     local newValue = transformerFunction(self._value);
     self:setValue(newValue);
 end
@@ -270,7 +274,7 @@ end
     @param client Player
     @param transformerFunction function
 ]=]
-function RepliServer:updateValueForClient(client, transformerFunction)
+function RepliServer:updateValueForClient(client: Player, transformerFunction: (any) -> (any))
     local oldValue = table.clone(self._clientValues[client]);
     local newValue = transformerFunction(oldValue);
     self:setValueForClient(client, newValue);
@@ -290,7 +294,7 @@ end
     @param clients table
     @param transformerFunction function
 ]=]
-function RepliServer:updateValueForList(clients, transformerFunction)
+function RepliServer:updateValueForList(clients: {Player}, transformerFunction: (any) -> (any))
     for _, client in clients do
         local oldValue = table.clone(self._clientValues[client]);
         local newValue = transformerFunction(oldValue);
@@ -309,7 +313,7 @@ end
 
     @return any
 ]=]
-function RepliServer:getValue()
+function RepliServer:getValue(): any
     return self._value;
 end
 
@@ -325,7 +329,7 @@ end
     @param client Player
     @return any
 ]=]
-function RepliServer:getValueForClient(client)
+function RepliServer:getValueForClient(client: Player): any
     return self._clientValues[client];
 end
 
@@ -340,7 +344,7 @@ end
 
     @param client Player
 ]=]
-function RepliServer:clearValueForClient(client)
+function RepliServer:clearValueForClient(client: Player)
     if (not self._clientValues[client]) then
         return;
     end;
@@ -360,7 +364,7 @@ end
 
     @param clients table
 ]=]
-function RepliServer:clearValueForList(clients)
+function RepliServer:clearValueForList(clients: {Player})
     for _, client in clients do
         self:clearValueForClient(client);
     end;
@@ -393,7 +397,7 @@ end
 
     @param predicate function
 ]=]
-function RepliServer:clearValueFilter(predicate)
+function RepliServer:clearValueFilter(predicate: (Player) -> (boolean))
     for client, _ in self._clientValues do
         if (predicate(client)) then
             self:clearValueForClient(client);
@@ -407,7 +411,7 @@ end
 
     @param client Player
 ]=]
-function RepliServer:addClient(client)
+function RepliServer:addClient(client: Player)
     self._clientValues[client] = self._value;
 
     -- Tell the client they are connected to the class
@@ -423,7 +427,7 @@ end
 
     @param client Player
 ]=]
-function RepliServer:removeClient(client)
+function RepliServer:removeClient(client: Player)
     if (self._clientValues[client]) then
         self._clientValues[client] = nil;
     end;
@@ -440,4 +444,4 @@ function RepliServer:destroy()
     self._valueChanged:Destroy();
 end
 
-return table.freeze(RepliServer);
+return table.freeze(RepliServer) :: typeof(RepliServer);
