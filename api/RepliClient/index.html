@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="generator" content="Docusaurus v2.0.1">
 <title data-rh="true">RepliClient | Repli</title><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://kumarion.github.io/Repli/api/RepliClient"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docusaurus_tag" content="default"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docsearch:docusaurus_tag" content="default"><meta data-rh="true" property="og:title" content="RepliClient | Repli"><link data-rh="true" rel="canonical" href="https://kumarion.github.io/Repli/api/RepliClient"><link data-rh="true" rel="alternate" href="https://kumarion.github.io/Repli/api/RepliClient" hreflang="en"><link data-rh="true" rel="alternate" href="https://kumarion.github.io/Repli/api/RepliClient" hreflang="x-default"><link rel="stylesheet" href="/Repli/assets/css/styles.b179af31.css">
-<link rel="preload" href="/Repli/assets/js/runtime~main.9e89f2d6.js" as="script">
-<link rel="preload" href="/Repli/assets/js/main.ce061afa.js" as="script">
+<link rel="preload" href="/Repli/assets/js/runtime~main.2387fded.js" as="script">
+<link rel="preload" href="/Repli/assets/js/main.e1a9afca.js" as="script">
 </head>
 <body class="navigation-with-keyboard">
 <script>!function(){function e(e){document.documentElement.setAttribute("data-theme",e)}var t=function(){var e=null;try{e=localStorage.getItem("theme")}catch(e){}return e}();null!==t?e(t):window.matchMedia("(prefers-color-scheme: dark)").matches?e("dark"):(window.matchMedia("(prefers-color-scheme: light)").matches,e("light"))}()</script><div id="__docusaurus">
@@ -19,15 +19,19 @@
 <p>Example:</p>
 <pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> testValue <span class="token operator">=</span> Repli<span class="token punctuation">.</span><span class="token function">fromValue</span><span class="token punctuation">(</span><span class="token string">"TestValue"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="listenForCreation"><code style="text-decoration:none">listenForCreation</code><a class="hash-link" href="#listenForCreation" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Kumarion/Repli/blob/main/lib/Repli/RepliClient.lua#L129"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>RepliClient<!-- -->.</code><code class="green_DgR4">listenForCreation</code><code>(</code><div class="inset_uKQm"><div><code>class<!-- -->: </code><code class="blue_P4bS">string</code><code>,</code></div><div><code>callback<!-- -->: </code><code class="blue_P4bS">function</code></div></div><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/Repli/api/RepliClient">RepliClient</a></code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="listenForCreation"><code style="text-decoration:none">listenForCreation</code><a class="hash-link" href="#listenForCreation" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Kumarion/Repli/blob/main/lib/Repli/RepliClient.lua#L133"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>RepliClient<!-- -->.</code><code class="green_DgR4">listenForCreation</code><code>(</code><div class="inset_uKQm"><div><code>class<!-- -->: </code><code class="blue_P4bS">string</code><code>,</code></div><div><code>callback<!-- -->: </code><code class="blue_P4bS">function</code></div></div><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/Repli/api/RepliClient">RepliClient</a></code></div><div>
 <p>Example:</p>
 <pre class="language-lua"><code class="language-lua">Repli<span class="token punctuation">.</span><span class="token function">listenForCreation</span><span class="token punctuation">(</span><span class="token string">"TestValue"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>testValue<span class="token punctuation">)</span>
+    <span class="token comment">-- Gett the initial value</span>
+    <span class="token keyword">local</span> initialValue <span class="token operator">=</span> testValue<span class="token punctuation">:</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">-- Listen for further changes</span>
     testValue<span class="token punctuation">:</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>newValue<span class="token punctuation">)</span>
         <span class="token function">print</span><span class="token punctuation">(</span>newValue<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">end</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">end</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="isReady"><code style="text-decoration:none">isReady</code><a class="hash-link" href="#isReady" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Kumarion/Repli/blob/main/lib/Repli/RepliClient.lua#L158"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>RepliClient<!-- -->:</code><code class="green_DgR4">isReady</code><code>(</code><code>) → </code><code class="blue_P4bS">boolean</code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="isReady"><code style="text-decoration:none">isReady</code><a class="hash-link" href="#isReady" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Kumarion/Repli/blob/main/lib/Repli/RepliClient.lua#L162"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>RepliClient<!-- -->:</code><code class="green_DgR4">isReady</code><code>(</code><code>) → </code><code class="blue_P4bS">boolean</code></div><div>
 <p>Returns true if the client is ready to receive data.</p>
 <p>Example:</p>
 <pre class="language-lua"><code class="language-lua"><span class="token keyword">if</span> <span class="token punctuation">(</span>testValue<span class="token punctuation">:</span><span class="token function">isReady</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">then</span>
@@ -44,21 +48,21 @@
     <p>This will return false if the client is not ready. Consider using <code>onReady</code> if you want to wait for the value to be ready.</p>
   </div>
 </div>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="onReady"><code style="text-decoration:none">onReady</code><a class="hash-link" href="#onReady" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Kumarion/Repli/blob/main/lib/Repli/RepliClient.lua#L175"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>RepliClient<!-- -->:</code><code class="green_DgR4">onReady</code><code>(</code><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/Repli/api/Promise">Promise</a></code><code class="op_lSLc">&lt;</code><code class="blue_P4bS">any</code><code class="op_lSLc">&gt;</code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="onReady"><code style="text-decoration:none">onReady</code><a class="hash-link" href="#onReady" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Kumarion/Repli/blob/main/lib/Repli/RepliClient.lua#L179"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>RepliClient<!-- -->:</code><code class="green_DgR4">onReady</code><code>(</code><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/Repli/api/Promise">Promise</a></code><code class="op_lSLc">&lt;</code><code class="blue_P4bS">any</code><code class="op_lSLc">&gt;</code></div><div>
 <p>Returns a promise that resolves when the client is ready.</p>
 <p>Example:</p>
 <pre class="language-lua"><code class="language-lua">testValue<span class="token punctuation">:</span><span class="token function">onReady</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token function">andThen</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token function">print</span><span class="token punctuation">(</span>testValue<span class="token punctuation">:</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">end</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="subscribe"><code style="text-decoration:none">subscribe</code><a class="hash-link" href="#subscribe" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Kumarion/Repli/blob/main/lib/Repli/RepliClient.lua#L204"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>RepliClient<!-- -->:</code><code class="green_DgR4">subscribe</code><code>(</code><code>callback<!-- -->: </code><code class="blue_P4bS">function</code><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="https://developer.roblox.com/en-us/api-reference/datatype/RBXScriptConnection" target="_blank" rel="noopener noreferrer">RBXScriptConnection<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound" style="color:gray;vertical-align:middle;margin-left:2px"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="subscribe"><code style="text-decoration:none">subscribe</code><a class="hash-link" href="#subscribe" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Kumarion/Repli/blob/main/lib/Repli/RepliClient.lua#L208"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>RepliClient<!-- -->:</code><code class="green_DgR4">subscribe</code><code>(</code><code>callback<!-- -->: </code><code class="blue_P4bS">function</code><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="https://developer.roblox.com/en-us/api-reference/datatype/RBXScriptConnection" target="_blank" rel="noopener noreferrer">RBXScriptConnection<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound" style="color:gray;vertical-align:middle;margin-left:2px"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></code></div><div>
 <p>Subscribes to changes.</p>
 <p>Example:</p>
 <pre class="language-lua"><code class="language-lua">testValue<span class="token punctuation">:</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>newValue<span class="token punctuation">)</span>
     <span class="token function">print</span><span class="token punctuation">(</span>newValue<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">end</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="getValue"><code style="text-decoration:none">getValue</code><a class="hash-link" href="#getValue" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Kumarion/Repli/blob/main/lib/Repli/RepliClient.lua#L229"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>RepliClient<!-- -->:</code><code class="green_DgR4">getValue</code><code>(</code><code>) → </code><code class="blue_P4bS">any</code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="getValue"><code style="text-decoration:none">getValue</code><a class="hash-link" href="#getValue" title="Direct link to heading">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Kumarion/Repli/blob/main/lib/Repli/RepliClient.lua#L233"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>RepliClient<!-- -->:</code><code class="green_DgR4">getValue</code><code>(</code><code>) → </code><code class="blue_P4bS">any</code></div><div>
 <p>Returns the current value</p>
 <p>Example:</p>
 <pre class="language-lua"><code class="language-lua"><span class="token function">print</span><span class="token punctuation">(</span>testValue<span class="token punctuation">:</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -99,7 +103,7 @@
         },
         {
             &quot;name&quot;: &quot;listenForCreation&quot;,
-            &quot;desc&quot;: &quot;Example:\n```lua\nRepli.listenForCreation(\&quot;TestValue\&quot;, function(testValue)\n    testValue:subscribe(function(newValue)\n        print(newValue);\n    end);\nend);\n```&quot;,
+            &quot;desc&quot;: &quot;Example:\n```lua\nRepli.listenForCreation(\&quot;TestValue\&quot;, function(testValue)\n    -- Gett the initial value\n    local initialValue = testValue:getValue();\n\n    -- Listen for further changes\n    testValue:subscribe(function(newValue)\n        print(newValue);\n    end);\nend);\n```&quot;,
             &quot;params&quot;: [
                 {
                     &quot;name&quot;: &quot;class&quot;,
@@ -120,7 +124,7 @@
             ],
             &quot;function_type&quot;: &quot;static&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 129,
+                &quot;line&quot;: 133,
                 &quot;path&quot;: &quot;lib/Repli/RepliClient.lua&quot;
             }
         },
@@ -136,7 +140,7 @@
             ],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 158,
+                &quot;line&quot;: 162,
                 &quot;path&quot;: &quot;lib/Repli/RepliClient.lua&quot;
             }
         },
@@ -152,7 +156,7 @@
             ],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 175,
+                &quot;line&quot;: 179,
                 &quot;path&quot;: &quot;lib/Repli/RepliClient.lua&quot;
             }
         },
@@ -174,7 +178,7 @@
             ],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 204,
+                &quot;line&quot;: 208,
                 &quot;path&quot;: &quot;lib/Repli/RepliClient.lua&quot;
             }
         },
@@ -190,7 +194,7 @@
             ],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 229,
+                &quot;line&quot;: 233,
                 &quot;path&quot;: &quot;lib/Repli/RepliClient.lua&quot;
             }
         }
@@ -227,7 +231,7 @@
         &quot;path&quot;: &quot;lib/Repli/RepliClient.lua&quot;
     }
 }</pre></details></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#types" class="table-of-contents__link toc-highlight">Types</a></li><li><a href="#properties" class="table-of-contents__link toc-highlight">Properties</a><ul><li><a href="#isReady" class="table-of-contents__link toc-highlight">isReady</a></li><li><a href="#value" class="table-of-contents__link toc-highlight">value</a></li></ul></li><li><a href="#functions" class="table-of-contents__link toc-highlight">Functions</a><ul><li><a href="#getValue" class="table-of-contents__link toc-highlight">:getValue</a></li><li><a href="#isReady" class="table-of-contents__link toc-highlight">:isReady</a></li><li><a href="#onReady" class="table-of-contents__link toc-highlight">:onReady</a></li><li><a href="#subscribe" class="table-of-contents__link toc-highlight">:subscribe</a></li><li><a href="#fromValue" class="table-of-contents__link toc-highlight">.fromValue</a></li><li><a href="#listenForCreation" class="table-of-contents__link toc-highlight">.listenForCreation</a></li></ul></li></ul></div></div></div></div></main></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2023 Kumarion. Built with Moonwave and Docusaurus</div></div></div></footer></div>
-<script src="/Repli/assets/js/runtime~main.9e89f2d6.js"></script>
-<script src="/Repli/assets/js/main.ce061afa.js"></script>
+<script src="/Repli/assets/js/runtime~main.2387fded.js"></script>
+<script src="/Repli/assets/js/main.e1a9afca.js"></script>
 </body>
 </html>
