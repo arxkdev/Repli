@@ -161,10 +161,9 @@ end
     You can only subscribe to global values ie. using ``value:setValue(x)`` and not ``value:setValueForClient(player, x)``
     :::
 
-    @param callback function
     @return Signal
 ]=]
-function RepliServer:subscribe(callback: (any) -> ())
+function RepliServer:subscribe(callback: (newValue: any) -> ())
     self._valueChanged:Connect(callback);
 end
 
@@ -231,7 +230,6 @@ end
     end, 10);
     ```
 
-    @param predicate function
     @param value any
 ]=]
 function RepliServer:setValueFilter(predicate: (Player) -> (boolean), value: any)
@@ -252,10 +250,8 @@ end
         return oldValue + 1;
     end);
     ```
-
-    @param transformerFunction function
 ]=]
-function RepliServer:updateValue(transformerFunction: (any) -> (any))
+function RepliServer:updateValue(transformerFunction: (oldValue: any) -> ())
     local newValue = transformerFunction(self._value);
     self:setValue(newValue);
 end
@@ -272,9 +268,8 @@ end
     ```
 
     @param client Player
-    @param transformerFunction function
 ]=]
-function RepliServer:updateValueForClient(client: Player, transformerFunction: (any) -> (any))
+function RepliServer:updateValueForClient(client: Player, transformerFunction: (oldValue: any) -> ())
     local oldValue = table.clone(self._clientValues[client]);
     local newValue = transformerFunction(oldValue);
     self:setValueForClient(client, newValue);
@@ -292,9 +287,8 @@ end
     ```
 
     @param clients table
-    @param transformerFunction function
 ]=]
-function RepliServer:updateValueForList(clients: {Player}, transformerFunction: (any) -> (any))
+function RepliServer:updateValueForList(clients: {Player}, transformerFunction: (oldValue: any) -> ())
     for _, client in clients do
         local oldValue = table.clone(self._clientValues[client]);
         local newValue = transformerFunction(oldValue);
@@ -361,8 +355,6 @@ end
     ```lua
     testValue:clearValueForList({player1, player2});
     ```
-
-    @param clients table
 ]=]
 function RepliServer:clearValueForList(clients: {Player})
     for _, client in clients do
@@ -394,8 +386,6 @@ end
         return (client.Name == "Player1");
     end);
     ```
-
-    @param predicate function
 ]=]
 function RepliServer:clearValueFilter(predicate: (Player) -> (boolean))
     for client, _ in self._clientValues do

@@ -122,7 +122,6 @@ end
     ```
 
     @param class string
-    @param callback function
     @return RepliClient
 ]=]
 function RepliClient.listenForCreation(class: string, callback: (RepliClient) -> ()): RepliClient
@@ -196,11 +195,8 @@ end
         print(newValue);
     end);
     ```
-
-    @param callback function
-    @return RBXScriptConnection
 ]=]
-function RepliClient:subscribe(callback: (any) -> ()): Signal
+function RepliClient:subscribe(callback: (newValue: any) -> ()): Signal
     return self._changedSignal:Connect(callback);
 end
 
