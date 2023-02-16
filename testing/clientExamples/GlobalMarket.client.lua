@@ -11,7 +11,7 @@ end
 -- this is still a work in progress
 Repli.listenForCreation("Market", function(market)
     -- value created
-    print("Market created!", market._value);
+    print("Market created!", market.value);
 
     -- listen for further changes
     market:subscribe(furtherMarketChanges);

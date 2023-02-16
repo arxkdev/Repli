@@ -12,7 +12,7 @@ local function subscribedFunctionTestPlayerdData(value)
     ScreenGui.TextLabel.Text = "Gems: " .. value.Gems;
 end
 Repli.listenForCreation("TestPlayerData", function (testPlayerData)
-    subscribedFunctionTestPlayerdData(testPlayerData:getValue());
+    subscribedFunctionTestPlayerdData(testPlayerData.value);
     testPlayerData:subscribe(subscribedFunctionTestPlayerdData);
 end);
 
@@ -21,7 +21,7 @@ local function subscribedFunctionTest2(value)
     print("Test2: ", value);
 end
 Repli.listenForCreation("Test2", function (test2)
-    subscribedFunctionTest2(test2:getValue());
+    subscribedFunctionTest2(test2.value);
     test2:subscribe(subscribedFunctionTest2);
 end);
 

@@ -40,7 +40,7 @@ end
 
 Repli.listenForCreation("RandomItems", function(randomItems)
     -- We don't actually need to put this function here, but we can if we want to listen for the initial value
-    randomItemsChanged(randomItems:getValue());
+    randomItemsChanged(randomItems.value);
 
     -- Here's our subscribe function for listening to only further changes
     randomItems:subscribe(randomItemsChanged);

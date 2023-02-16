@@ -109,7 +109,7 @@ function RepliServer.createValue(className: string, value: any): Repli
 
     -- Check if the class name is already taken, if it is, throw an error
     if (self._R:FindFirstChild("RepliEvent_" .. className)) then
-        error(`The classname "{className}" has already been created, please use a different classname.`);
+        error([[The classname "]] .. className .. [[" has already been created, please use a different classname.]]);
     end;
 
     -- Create a remote event for the clients to send data to the server
