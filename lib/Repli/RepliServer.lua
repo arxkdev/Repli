@@ -60,21 +60,22 @@ classConnect.Parent = script.Parent;
 
 -- Helper Functions
 -- Function for checking for table equality
-local function CheckTableEquality(t1: table, t2: table): boolean
-	if (#t1 ~= #t2) then return false; end;
+local function CheckTableEquality(t1: {any}, t2: {any}): boolean
+	-- If t1 and t2 are not tables, simply compare them
+	if (type(t1) ~= "table" or type(t2) ~= "table") then
+		return (t1 == t2);
+	end;
 
-	for i, v in pairs(t1) do
-		if (t2[i]) then
-			if (type(v) == "table" and type(t2[i]) == "table") then
-				if (not CheckTableEquality(v, t2[i])) then
-					return false;
-				end;
-			else
-				if (v ~= t2[i]) then
-					return false;
-				end;
-			end;
-		else
+	-- If the tables have different lengths, they are not the same
+	if (#t1 ~= #t2) then
+		return false;
+	end;
+
+	-- Compare the elements in the tables
+	for k, v1 in pairs(t1) do
+		local v2 = t2[k];
+		
+		if (not CheckTableEquality(v1, v2)) then
 			return false;
 		end;
 	end;
@@ -118,6 +119,7 @@ function RepliServer.createValue(className: string, value: any): Repli
 
     self._remoteEvent = remoteEvent;
 
+    -- Setup our playerremoving event for removing clients
     self._playerRemoving = Players.PlayerRemoving:Connect(function(player)
         self:removeClient(player);
     end);
