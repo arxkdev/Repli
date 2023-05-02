@@ -31,13 +31,16 @@ type Promise = typeof(Promise);
 -- Example
 --[[
     local Repli = require(ReplicatedStorage.Repli)
-    local Value = Repli.fromClass("TestValue")
 
-    Value:subscribe(function(value)
-        print(value)
+    Repli.listenForCreation("TestValue", function(testValue)
+        -- Get the initial value
+        local initialValue = testValue.value;
+        print(initialValue)
+
+        testValue:subscribe(function(value)
+            print(value)
+        end)
     end)
-
-    Value:get() -- returns the value
 ]]
 
 -- Connect to the server
@@ -51,6 +54,13 @@ ClassConnectRemote.OnClientEvent:Connect(function(classConnectedTo: string, init
 end);
 
 -- Wait for a class to be connected to
+-- Listen for a class to be created and return a RepliClient with the given class name
+--[=[
+    Not recommended to use this function. Use ``Repli.listenForCreation`` instead.   
+
+    @param class string
+    @return RepliClient
+]=]
 function WaitForClass(class: string)
     return Promise.new(function(resolve)
         if (ClassesConnected[class]) then
@@ -102,7 +112,7 @@ function RepliClient.fromValue(class: string): RepliClient
             self._changedSignal:Fire(value);
         end);
     end);
-    
+
     return self;
 end
 
@@ -112,7 +122,7 @@ end
     ```lua
     Repli.listenForCreation("TestValue", function(testValue)
         -- Gett the initial value
-        local initialValue = testValue:getValue();
+        local initialValue = testValue.value;
 
         -- Listen for further changes
         testValue:subscribe(function(newValue)

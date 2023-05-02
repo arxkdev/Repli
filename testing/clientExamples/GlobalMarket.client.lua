@@ -13,6 +13,9 @@ Repli.listenForCreation("Market", function(market)
     -- value created
     print("Market created!", market.value);
 
+    -- check if the value is ready (will be)
+    print(market:isReady());
+
     -- listen for further changes
     market:subscribe(furtherMarketChanges);
 end);
