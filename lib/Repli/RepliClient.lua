@@ -54,13 +54,6 @@ ClassConnectRemote.OnClientEvent:Connect(function(classConnectedTo: string, init
 end);
 
 -- Wait for a class to be connected to
--- Listen for a class to be created and return a RepliClient with the given class name
---[=[
-    Not recommended to use this function. Use ``Repli.listenForCreation`` instead.   
-
-    @param class string
-    @return RepliClient
-]=]
 function WaitForClass(class: string)
     return Promise.new(function(resolve)
         if (ClassesConnected[class]) then
@@ -81,6 +74,12 @@ function WaitForClass(class: string)
 end
 
 -- Create a new RepliClient
+--[=[
+    Not recommended to use this function. Use ``Repli.listenForCreation`` instead.   
+
+    @param class string
+    @return RepliClient
+]=]
 function RepliClient.fromValue(class: string): RepliClient
     local self = setmetatable({}, RepliClient);
     self._isReady = false;
