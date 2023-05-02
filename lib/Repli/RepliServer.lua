@@ -96,7 +96,7 @@ end
     @return RepliServer
 ]=]
 function RepliServer.createValue(className: string, value: any): Repli
-    local self = setmetatable({}, RepliServer);
+    local self = setmetatable({ }, RepliServer);
     -- Value globally
     self._value = value;
     -- Value for specific clients

@@ -92,11 +92,14 @@ function RepliClient.fromValue(class: string): RepliClient
     local ClassReadyRemote: RemoteEvent = script.Parent._RepliClassReady;
     ClassReadyRemote:FireServer(class);
 
-    -- Wait for the server to allow us to connect to the class
-    WaitForClass(class):await();
-    self._remoteEvent = self._R:FindFirstChild("RepliEvent_" .. class);
-    self.value = ClassesConnected[class];
-    self._isReady = true;
+    -- Get the remote event
+    self._remoteEvent = self._R:WaitForChild("RepliEvent_" .. class);
+
+    -- Wait for the class to be connected to
+    WaitForClass(class):andThen(function(initialValue: any)
+        self.value = initialValue;
+        self._isReady = true;
+    end);
 
     -- Once we are connected, we can start listening for changes
     self:onReady():andThen(function()
