@@ -6,7 +6,7 @@ sidebar_position: 2
 
 Using ``value:getValue()`` on the client
 :::note
-When you use ``value:getValue()`` on the client, it will not return immediately, so if you are looking to get the value when it is available, consider using either ``subscribe`` or ``onReady``.
+When you use ``value:getValue()`` on the client, it might return a (not ready) value, so if you are looking to get the value when it is available, consider using either ``subscribe`` or ``onReady``.
 :::
 
 Repli recognises what enviornment it is running in

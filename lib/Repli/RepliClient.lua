@@ -109,7 +109,6 @@ function RepliClient.fromValue(class: string): RepliClient
                 return;
             end;
 
-            -- print(value);
             self.value = value;
             self._changedSignal:Fire(value);
         end);
