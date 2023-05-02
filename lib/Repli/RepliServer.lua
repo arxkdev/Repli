@@ -369,19 +369,19 @@ function RepliServer:clearValueForList(clients: {Player})
     end;
 end
 
--- Clear a value for all clients
---[=[
-    Clears the value for all clients.
+-- -- Clear a value for all clients
+-- --[=[
+--     Clears the value for all clients.
 
-    Example:
-    ```lua
-    testValue:clearValue();
-    ```
-]=]
-function RepliServer:clearValue()
-    table.clear(self._clientValues);
-    self.remoteEvent:FireAllClients(self._value);
-end
+--     Example:
+--     ```lua
+--     testValue:clearValue();
+--     ```
+-- ]=]
+-- function RepliServer:clearValue()
+--     table.clear(self._clientValues);
+--     self.remoteEvent:FireAllClients(self._value);
+-- end
 
 -- Clear value for a filter of clients with a predicate
 --[=[
