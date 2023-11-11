@@ -8,4 +8,4 @@ Repli is a Roblox library that makes it simple and straightforward to replicate 
 
 # Super Simple API
 Repli provides a simple and intuitive API that makes it easy to get started with replicating data. The library is designed to be as simple as possible, so you can focus on creating your game instead of worrying about the technical details.
-Read the [API](https://kumarion.github.io/Repli/api/) for more info.
+Read the [API](https://arxk.io/Repli/api/) for more info.

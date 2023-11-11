@@ -1,5 +1,5 @@
 title = "Repli"  # From Git
-gitRepoUrl = "https://github.com/Kumarion/Repli" # From Git
+gitRepoUrl = "https://github.com/arxkdev/Repli" # From Git
 
 gitSourceBranch = "main"
 changelog = true
@@ -35,7 +35,7 @@ onBrokenMarkdownLinks = "warn"
 # From git:
 organizationName = "Kumarion"
 projectName = "Repli"
-url = "https://kumarion.github.io"
+url = "https://arxk.io"
 baseUrl = "/Repli/"
 tagline = "Simple. Quick. Lightweight replication library for Roblox."
 
